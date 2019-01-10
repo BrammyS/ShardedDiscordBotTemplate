@@ -9,7 +9,7 @@ namespace Bot.Configurations
         private const string ConfigFolder = "Configs";
         private const string ConfigFile = "ConfigData.json";
 
-        public static ConfigDataModel Data;
+        public static ConfigDataModel Data { get; }
 
         static ConfigData()
         {
