@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bot.Logger.Interfaces\Bot.Logger.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>
