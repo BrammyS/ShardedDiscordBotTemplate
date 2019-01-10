@@ -61,7 +61,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
             if (msg.Channel.Id == 265156361791209475) return;
             var context = new ShardedCommandContext(_client, msg);
             var argPos = 0;
-            if (context.Message.HasStringPrefix("!", ref argPos, StringComparison.CurrentCultureIgnoreCase) ||
+            if (context.Message.HasStringPrefix(Constants.Prefix, ref argPos, StringComparison.CurrentCultureIgnoreCase) ||
                 context.Message.HasMentionPrefix(_client.CurrentUser, ref argPos))
             {
                 await HandleCommandAsync(context, argPos).ConfigureAwait(false);
