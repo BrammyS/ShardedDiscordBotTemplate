@@ -16,6 +16,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
         public async Task<EmbedBuilder> HandleErrorsAsync(IResult iResult, SocketCommandContext context)
         {
             var message = context.Message.Content.ToLower();
+            var prefix = Constants.Prefix;
             var result = iResult.ToString();
 
             if (result.Contains("UnmetPrecondition: Bot requires guild permission EmbedLinks"))
@@ -55,11 +56,37 @@ namespace Bot.Discord.Handlers.CommandHandlers
                 }
             }
 
+            if (message.Contains($"{prefix}botinfo")) return HandleBotInfoErrors(result, prefix);
+            if (message.Contains($"{prefix}ping")) return HandlePingErrors(result, prefix);
+            if (message.Contains($"{prefix}shards")) return HandleShardsErrors(result, prefix);
+
             if (result.Contains("BadArgCount: The input text has too many parameters."))
                 return EmbedError("Incorrect input", "The input has to many parameters");
             if (result.Contains("BadArgCount: The input text has too few parameters."))
                 return EmbedError("Incorrect input", "The input text has too few parameters.");
 
+            return GetDefaultError(result);
+        }
+
+        private EmbedBuilder HandleBotInfoErrors(string result, string prefix)
+        {
+            if (result.Contains("The input text has too many parameters."))
+                return EmbedError("Incorrect input", "This command does not need any input!\n" +
+                                                     $"Example: **{prefix}Botinfo**");
+            return GetDefaultError(result);
+        }
+        private EmbedBuilder HandlePingErrors(string result, string prefix)
+        {
+            if (result.Contains("The input text has too many parameters."))
+                return EmbedError("Incorrect input", "This command does not need any input!\n" +
+                                                     $"Example: **{prefix}Ping**");
+            return GetDefaultError(result);
+        }
+        private EmbedBuilder HandleShardsErrors(string result, string prefix)
+        {
+            if (result.Contains("The input text has too many parameters."))
+                return EmbedError("Incorrect input", "This command does not need any input!\n" +
+                                                     $"Example: **{prefix}Shards**");
             return GetDefaultError(result);
         }
     }
