@@ -5,14 +5,14 @@ namespace Bot.Discord.Configurations
 {
     public static class CommandConfig
     {
-        public static CommandServiceConfig GetDefault()
+        public static CommandService GetDefault()
         {
-            return new CommandServiceConfig
+            return new CommandService(new CommandServiceConfig
             {
                 CaseSensitiveCommands = false,
                 LogLevel = LogSeverity.Info,
                 DefaultRunMode = RunMode.Async
-            };
+            });
         }
     }
 }
