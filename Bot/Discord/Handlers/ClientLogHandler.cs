@@ -5,7 +5,7 @@ using Bot.Logger.Interfaces;
 using Discord;
 using Discord.WebSocket;
 
-namespace Bot.Discord.EventHandlers
+namespace Bot.Discord.Handlers
 {
     public class ClientLogHandler : IClientLogHandler
     {
