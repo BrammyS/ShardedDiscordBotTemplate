@@ -11,6 +11,10 @@ namespace Bot.Configurations
 
         public static ConfigDataModel Data { get; }
 
+
+        /// <summary>
+        /// Loads all the <see cref="ConfigData"/> needed to start the bot.
+        /// </summary>
         static ConfigData()
         {
             if (!Directory.Exists(ConfigFolder)) Directory.CreateDirectory(ConfigFolder);
