@@ -30,6 +30,9 @@ namespace Bot
             }
         }
 
+        /// <summary>
+        /// Registers objects to the <see cref="container"/>
+        /// </summary>
         public static void RegisterTypes()
         {
             container = new UnityContainer();
@@ -50,6 +53,12 @@ namespace Bot
             container.RegisterType<ICommandHandler, CommandHandler>(new PerThreadLifetimeManager());
         }
 
+
+        /// <summary>
+        /// Resolve a objects that is registert in the <see cref="container"/>.
+        /// </summary>
+        /// <typeparam name="T">The object you want to resolve</typeparam>
+        /// <returns>The resolved object.</returns>
         public static T Resolve<T>()
         {
             return (T)Container.Resolve(typeof(T), string.Empty, new CompositeResolverOverride());
