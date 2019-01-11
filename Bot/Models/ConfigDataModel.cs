@@ -2,8 +2,13 @@
 {
     public struct ConfigDataModel
     {
+        /// <summary>The token that the bot will use to connect.</summary>
         public string Token;
+
+        /// <summary>The id that the bot has.</summary>
         public ulong DiscordBotId;
+
+        /// <summary>The restart time for when the bot will restart.</summary>
         public int RestartTime;
     }
 }
