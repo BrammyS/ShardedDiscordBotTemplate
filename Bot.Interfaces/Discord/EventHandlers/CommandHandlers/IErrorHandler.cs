@@ -23,5 +23,13 @@ namespace Bot.Interfaces.Discord.EventHandlers.CommandHandlers
         /// <param name="description">The description the message will have.</param>
         /// <returns>The embedded error message.</returns>
         EmbedBuilder EmbedError(string title, string description);
+
+
+        /// <summary>
+        /// Embeds the default embedded error message.
+        /// </summary>
+        /// <param name="exception">The exception that will be logged .</param>
+        /// <returns>The embedded error message.</returns>
+        EmbedBuilder GetDefaultError(string exception);
     }
 }
