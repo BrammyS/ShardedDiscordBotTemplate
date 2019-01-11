@@ -9,10 +9,18 @@ namespace Bot.Discord.Handlers.CommandHandlers
 {
     public class CommandInputErrorHandler : ErrorHandler, ICommandInputErrorHandler
     {
+
+
+        /// <summary>
+        /// Creates a new <see cref="CommandInputErrorHandler"/>.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
         public CommandInputErrorHandler(ILogger logger) : base(logger)
         {
         }
 
+
+        /// <inheritdoc />
         public async Task<EmbedBuilder> HandleErrorsAsync(IResult iResult, SocketCommandContext context)
         {
             var message = context.Message.Content.ToLower();
@@ -25,13 +33,13 @@ namespace Bot.Discord.Handlers.CommandHandlers
                 return null;
             }
 
-            //User permission errors
+            // User permission errors.
             if (result.Contains("UnmetPrecondition: User requires guild permission Administrator"))
                 return EmbedError("Permission error", ":no_entry_sign: You need admin permissions for this command.");
             if (result.Contains("UnmetPrecondition: User requires guild permission ManageRoles"))
                 return EmbedError("Permission error", ":no_entry_sign: You need Manage Roles permissions for this command.");
 
-            //Sending the user a DM if the bot cant send a message in that channel
+            // Sending the user a DM if the bot cant send a message in that channel.
             if (result.Contains("UnmetPrecondition: Bot requires guild permission SendMessages"))
             {
                 await context.User.SendMessageAsync("", false, EmbedError("Permission error", "I need don't have the right permissions to talk in that channel!\n" +
@@ -42,6 +50,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
             if (result.Contains("A quoted parameter is incomplete"))
                 return EmbedError("Incorrect input", "If your are using quotes pls remember to close them <3");
 
+            // Missing permissions error.
             if (result.Contains("The server responded with error 50013: Missing Permissions") || result.Contains("UnmetPrecondition: Bot requires guild permission"))
             {
                 if (context is SocketCommandContext commandContext)
@@ -56,10 +65,14 @@ namespace Bot.Discord.Handlers.CommandHandlers
                 }
             }
 
+
+            // Checking what command what used to embed the correct error.
             if (message.Contains($"{prefix}botinfo")) return HandleBotInfoErrors(result, prefix);
             if (message.Contains($"{prefix}ping")) return HandlePingErrors(result, prefix);
             if (message.Contains($"{prefix}shards")) return HandleShardsErrors(result, prefix);
 
+
+            // To many or to few parameters error messages.
             if (result.Contains("BadArgCount: The input text has too many parameters."))
                 return EmbedError("Incorrect input", "The input has to many parameters");
             if (result.Contains("BadArgCount: The input text has too few parameters."))
@@ -68,6 +81,13 @@ namespace Bot.Discord.Handlers.CommandHandlers
             return GetDefaultError(result);
         }
 
+
+        /// <summary>
+        /// Embeds the error messages for the BotInfo command
+        /// </summary>
+        /// <param name="result">The <see cref="string"/> that contains the error message</param>
+        /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
+        /// <returns> A embedded error message.</returns>
         private EmbedBuilder HandleBotInfoErrors(string result, string prefix)
         {
             if (result.Contains("The input text has too many parameters."))
@@ -75,6 +95,14 @@ namespace Bot.Discord.Handlers.CommandHandlers
                                                      $"Example: **{prefix}Botinfo**");
             return GetDefaultError(result);
         }
+
+
+        /// <summary>
+        /// Embeds the error messages for the Ping command
+        /// </summary>
+        /// <param name="result">The <see cref="string"/> that contains the error message</param>
+        /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
+        /// <returns> A embedded error message.</returns>
         private EmbedBuilder HandlePingErrors(string result, string prefix)
         {
             if (result.Contains("The input text has too many parameters."))
@@ -82,6 +110,14 @@ namespace Bot.Discord.Handlers.CommandHandlers
                                                      $"Example: **{prefix}Ping**");
             return GetDefaultError(result);
         }
+
+
+        /// <summary>
+        /// Embeds the error messages for the Shards command
+        /// </summary>
+        /// <param name="result">The <see cref="string"/> that contains the error message</param>
+        /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
+        /// <returns> A embedded error message.</returns>
         private EmbedBuilder HandleShardsErrors(string result, string prefix)
         {
             if (result.Contains("The input text has too many parameters."))

@@ -8,27 +8,43 @@ namespace Bot.Discord.Handlers.CommandHandlers
     public class ErrorHandler : IErrorHandler
     {
         private readonly ILogger _logger;
+
+
+        /// <summary>
+        /// The default error message that will can be shown in the description of an embed.
+        /// </summary>
         private const string DefaultErrorMessage =
             "an unexpected error occurred. Pls try again.\n" +
-            "Join [UPDATE](https://discord.gg) discord if nothing changes!";
+            "Join [UPDATE](https://discord.ggINVITE) discord if nothing changes!";
 
+
+        /// <summary>
+        /// Creates a new <see cref="ErrorHandler"/>.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
         public ErrorHandler(ILogger logger)
         {
             _logger = logger;
         }
 
+
+        /// <inheritdoc />
         public EmbedBuilder GetDefaultError(string commandName, string message, string exception)
         {
             _logger.Log("UnHandledErrors", $"Command: {commandName} Exception: {message} Exception info: {exception}");
             return EmbedError("Generic error", DefaultErrorMessage);
         }
 
+
+        /// <inheritdoc />
         public EmbedBuilder GetDefaultError(string result)
         {
             _logger.Log("UnHandledErrors", result);
             return EmbedError("Generic error", DefaultErrorMessage);
         }
 
+
+        /// <inheritdoc />
         public EmbedBuilder EmbedError(string title, string description)
         {
             return new EmbedBuilder
