@@ -14,6 +14,13 @@ namespace Bot.Discord
         private readonly IClientLogHandler _clientLogHandler;
         private readonly ICommandHandler _commandHandler;
 
+
+        /// <summary>
+        /// Creates a new <see cref="Connection"/>.
+        /// </summary>
+        /// <param name="client">The <see cref="DiscordShardedClient"/> that will be used.</param>
+        /// <param name="clientLogHandler">The <see cref="IClientLogHandler"/> that will log all the log messages.</param>
+        /// <param name="commandHandler">The <see cref="ICommandHandler"/> that will handle all the commands.</param>
         public Connection(DiscordShardedClient client, IClientLogHandler clientLogHandler, ICommandHandler commandHandler)
         {
             _client = client;
@@ -21,17 +28,20 @@ namespace Bot.Discord
             _commandHandler = commandHandler;
         }
 
+
+        /// <inheritdoc />
         public async Task ConnectAsync()
         {
-            //Start the connection to discord
+            // Start the connection to discord
             await _client.LoginAsync(TokenType.Bot, ConfigData.Data.Token).ConfigureAwait(false);
             await _client.StartAsync().ConfigureAwait(false);
 
-            //Initialize all the client logging
+            // Initialize all the client logging
             _clientLogHandler.Initialize();
 
             await _commandHandler.InitializeAsync().ConfigureAwait(false);
 
+            // Wait the thread so the console application doesn't close.
             await Task.Delay(ConfigData.Data.RestartTime * 60000).ConfigureAwait(false);
             await _client.StopAsync().ConfigureAwait(false);
         }

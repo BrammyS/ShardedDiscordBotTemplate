@@ -6,7 +6,6 @@ namespace Bot.Logger
 {
     public class Logger : ILogger
     {
-
         /// <inheritdoc />
         /// <summary>
         /// Logs a message to the console and logs the message to the Misc logs folder.
@@ -20,6 +19,7 @@ namespace Bot.Logger
             Console.ResetColor();
             Log("Misc", message);
         }
+
 
         /// <inheritdoc />
         /// <summary>

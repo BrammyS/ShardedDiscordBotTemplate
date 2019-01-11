@@ -2,13 +2,13 @@
 {
     public static class ShardStatusTypeEmoji
     {
-
-
         /// <summary>
         /// Converts a integer to a status emoji.
         /// </summary>
         /// <param name="latency">The latency of a client or shards.</param>
-        /// <returns>A status emoji.</returns>
+        /// <returns>
+        /// A status emoji as a <see cref="string"/>
+        /// </returns>
         public static string GetStatusEmoji(int latency)
         {
             if (latency < 200) return "<:GreenStatus:533010751229526032>";

@@ -8,11 +8,18 @@ namespace Bot
     {
         private readonly IConnection _connection;
 
+
+        /// <summary>
+        /// Creates a new <see cref="Bot"/>.
+        /// </summary>
+        /// <param name="connection">The <see cref="IConnection"/> that will be used.</param>
         public Bot(IConnection connection)
         {
             _connection = connection;
         }
 
+
+        /// <inheritdoc />
         public async Task StartAsync()
         {
             await _connection.ConnectAsync().ConfigureAwait(false);
