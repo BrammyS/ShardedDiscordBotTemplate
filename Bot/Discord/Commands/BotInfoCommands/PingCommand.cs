@@ -21,6 +21,10 @@ namespace Bot.Discord.Commands.BotInfoCommands
             _embed = new EmbedBuilder();
         }
 
+
+        /// <summary>
+        /// Sends the ping of the shard that is connected to the server where the command is requested.
+        /// </summary>
         [Command("ping", RunMode = RunMode.Async)]
         [RequireBotPermission(GuildPermission.EmbedLinks)]
         public async Task PingAsync()
@@ -32,6 +36,10 @@ namespace Bot.Discord.Commands.BotInfoCommands
             _logger.LogCommandUsed(Context.Guild.Id, Context.Client.ShardId, Context.Channel.Id, Context.User.Id, "Ping");
         }
 
+
+        /// <summary>
+        /// Sends the ping of all shards to the server where the command is requested.
+        /// </summary>
         [Command("shards", RunMode = RunMode.Async)]
         [RequireBotPermission(GuildPermission.EmbedLinks)]
         [RequireBotPermission(GuildPermission.SendMessages)]

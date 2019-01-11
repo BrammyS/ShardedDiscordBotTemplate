@@ -9,7 +9,6 @@ using Discord.WebSocket;
 
 namespace Bot.Discord.Commands.BotInfoCommands
 {
-    [RequireBotPermission(GuildPermission.EmbedLinks)]
     public class BotInfoCommand : ModuleBase<SocketCommandContext>
     {
         private readonly ILogger _logger;
@@ -22,8 +21,11 @@ namespace Bot.Discord.Commands.BotInfoCommands
             _embed = new EmbedBuilder();
         }
 
+
+        /// <summary>
+        /// Sends bot info about the current client.
+        /// </summary>
         [Command("BotInfo", RunMode = RunMode.Async)]
-        [RequireBotPermission(GuildPermission.EmbedLinks)]
         public async Task StatsAsync()
         {
             var ramUsages = Math.Round((decimal)Process.GetCurrentProcess().PrivateMemorySize64 / 1000000000, 2);

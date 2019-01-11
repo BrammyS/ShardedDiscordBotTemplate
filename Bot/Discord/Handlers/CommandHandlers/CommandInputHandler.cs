@@ -10,7 +10,6 @@ namespace Bot.Discord.Handlers.CommandHandlers
     public class CommandInputErrorHandler : ErrorHandler, ICommandInputErrorHandler
     {
 
-
         /// <summary>
         /// Creates a new <see cref="CommandInputErrorHandler"/>.
         /// </summary>
@@ -50,7 +49,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
             if (result.Contains("A quoted parameter is incomplete"))
                 return EmbedError("Incorrect input", "If your are using quotes pls remember to close them <3");
 
-            // Missing permissions error.
+            // If error is a Missing permissions error, send embedded error message.
             if (result.Contains("The server responded with error 50013: Missing Permissions") || result.Contains("UnmetPrecondition: Bot requires guild permission"))
             {
                 if (context is SocketCommandContext commandContext)
