@@ -29,7 +29,7 @@ namespace Bot.Discord.Commands.BotInfoCommands
             _embed.WithDescription($"{Context.Client.Latency} ms");
             _embed.WithColor(new Color(255, 255, 255));
             await ReplyAsync("", false, _embed.Build()).ConfigureAwait(false);
-            _logger.Log($"Server: {Context.Guild}, Id: {Context.Guild.Id} || ShardId: {Context.Client.ShardId} || Channel: {Context.Channel} || User: {Context.User} || Used: invite");
+            _logger.LogCommandUsed(Context.Guild.Id, Context.Client.ShardId, Context.Channel.Id, Context.User.Id, "Ping");
         }
 
         [Command("shards", RunMode = RunMode.Async)]
@@ -48,7 +48,7 @@ namespace Bot.Discord.Commands.BotInfoCommands
             _embed.WithFooter($"You are on shard: {Context.Client.ShardId}");
             _embed.WithColor(new Color(255, 255, 255));
             await ReplyAsync("", false, _embed.Build()).ConfigureAwait(false);
-            _logger.Log($"Server: {Context.Guild}, Id: {Context.Guild.Id} || ShardId: {Context.Client.ShardId} || Channel: {Context.Channel} || User: {Context.User} || Used: shards");
+            _logger.LogCommandUsed(Context.Guild.Id, Context.Client.ShardId, Context.Channel.Id, Context.User.Id, "Shards");
         }
     }
 }

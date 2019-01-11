@@ -9,6 +9,7 @@ using Discord.WebSocket;
 
 namespace Bot.Discord.Commands.BotInfoCommands
 {
+    [RequireBotPermission(GuildPermission.EmbedLinks)]
     public class BotInfoCommand : ModuleBase<SocketCommandContext>
     {
         private readonly ILogger _logger;
@@ -32,8 +33,8 @@ namespace Bot.Discord.Commands.BotInfoCommands
             _embed.WithTitle("Bot info for " + Context.User.Username);
             _embed.AddField("Bot:", $"{_shardedClient.CurrentUser.Username}#{_shardedClient.CurrentUser.Discriminator}", true);
             _embed.AddField("Bot id:", _shardedClient.CurrentUser.Id, true);
-            _embed.AddField("Owner:", "BrammyS#0001", true);
-            _embed.AddField("Owner id:", 308707063993860116, true);
+            _embed.AddField("Owner:", Constants.OwnerUsername, true);
+            _embed.AddField("Owner id:", Constants.OwnerId, true);
             _embed.AddField("RAM Usage:", $"{ramUsages}GB", true);
             _embed.AddField("Shards:", _shardedClient.Shards.Count, true);
             _embed.AddField("Servers:", _shardedClient.Shards.Sum(x => x.Guilds.Count), true);
@@ -43,7 +44,7 @@ namespace Bot.Discord.Commands.BotInfoCommands
             _embed.WithColor(new Color(255, 255, 255));
             _embed.WithCurrentTimestamp();
             await ReplyAsync("", false, _embed.Build()).ConfigureAwait(false);
-            _logger.Log($"Server: {Context.Guild}, Id: {Context.Guild.Id} || ShardId: {Context.Client.ShardId} || Channel: {Context.Channel} || User: {Context.User} || Used: BotInfo");
+            _logger.LogCommandUsed(Context.Guild.Id, Context.Client.ShardId, Context.Channel.Id, Context.User.Id, "BotInfo");
         }
     }
 }

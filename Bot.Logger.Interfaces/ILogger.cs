@@ -29,5 +29,16 @@ namespace Bot.Logger.Interfaces
         /// <param name="folder">The folder where you want to store the message.</param>
         /// <param name="text">The text you want to save.</param>
         void Log(string folder, string text);
+
+
+        /// <summary>
+        /// Logs a command error to text file.
+        /// </summary>
+        /// <param name="id">The id of the server.</param>
+        /// <param name="shardId">The id of the shard.</param>
+        /// <param name="channelId">The channel id where the command was used.</param>
+        /// <param name="userId">The user id of the user.</param>
+        /// <param name="commandName">The name of the command that was used.</param>
+        void LogCommandUsed(ulong id, int shardId, ulong channelId, ulong userId, string commandName);
     }
 }
