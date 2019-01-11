@@ -19,6 +19,15 @@ namespace Bot.Discord.Handlers.CommandHandlers
         private readonly ICommandInputErrorHandler _commandInputErrorHandler;
         private IServiceProvider _services;
 
+
+        /// <summary>
+        /// Creates a new <see cref="CommandHandler"/>.
+        /// </summary>
+        /// <param name="client">The <see cref="DiscordShardedClient"/> that will be used to receive all the messages.</param>
+        /// <param name="commandService">The <see cref="CommandService"/> that will be used to execute the commands.</param>
+        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
+        /// <param name="commandErrorHandler">The <see cref="ICommandErrorHandler"/> that will be used to handle command errors.</param>
+        /// <param name="commandInputErrorHandler">The <see cref="ICommandInputErrorHandler"/> that will be used when the input for a command is wrong.</param>
         public CommandHandler(DiscordShardedClient client, CommandService commandService, ILogger logger, 
                               ICommandErrorHandler commandErrorHandler, ICommandInputErrorHandler commandInputErrorHandler)
         {
