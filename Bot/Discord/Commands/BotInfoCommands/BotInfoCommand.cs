@@ -9,6 +9,7 @@ using Discord.WebSocket;
 
 namespace Bot.Discord.Commands.BotInfoCommands
 {
+    [Name("BotInfo")]
     public class BotInfoCommand : ModuleBase<SocketCommandContext>
     {
         private readonly ILogger _logger;

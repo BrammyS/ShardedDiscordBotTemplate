@@ -7,10 +7,12 @@ namespace Bot.Logger.Interfaces
 
         /// <summary>
         /// Logs a message to the console and logs the message to the Misc logs folder.
+        /// The <paramref name="color"/> is by default <see cref="ConsoleColor.Gray"/>
         /// </summary>
         /// <param name="message">The message that the user typed.</param>
-        /// <param name="color">The color that the message will have when printing something to the console. Default = gray.</param>
+        /// <param name="color">The color that the message will have when printing something to the console.</param>
         void Log(string message, ConsoleColor color = ConsoleColor.Gray);
+
 
         /// <summary>
         /// Logs a command error to text file.
@@ -22,6 +24,7 @@ namespace Bot.Logger.Interfaces
         /// <param name="guildName">The name of the server.</param>
         /// <param name="guildId">The id of the server.</param>
         void Log(string folder, string errorReason, string message, string username, string guildName, ulong guildId);
+
 
         /// <summary>
         /// Logs a message to text file.

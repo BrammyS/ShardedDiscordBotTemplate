@@ -8,6 +8,7 @@ using Discord.WebSocket;
 
 namespace Bot.Discord.Commands.BotInfoCommands
 {
+    [Name("Ping")]
     public class PingCommand : ModuleBase<SocketCommandContext>
     {
         private readonly ILogger _logger;
