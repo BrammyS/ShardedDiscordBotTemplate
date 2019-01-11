@@ -4,7 +4,11 @@ namespace Bot.Interfaces.Discord.EventHandlers.CommandHandlers
 {
     public interface ICommandHandler
     {
-        Task InitializeAsync();
 
+
+        /// <summary>
+        /// Initializes the command handler.
+        /// </summary>
+        Task InitializeAsync();
     }
 }

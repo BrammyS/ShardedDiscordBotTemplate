@@ -6,7 +6,13 @@ namespace Bot.Interfaces.Discord.EventHandlers.CommandHandlers
 {
     public interface ICommandErrorHandler
     {
-        Task<EmbedBuilder> HandleErrorsAsync(CommandException commandException);
 
+
+        /// <summary>
+        /// Handles a error message when the a error is thrown while using a command.
+        /// </summary>
+        /// <param name="commandException">The command exception of the command where the error occured.</param>
+        /// <returns>The embedded error message.</returns>
+        Task<EmbedBuilder> HandleErrorsAsync(CommandException commandException);
     }
 }
