@@ -4,7 +4,10 @@ namespace Bot.Interfaces
 {
     public interface IBot
     {
-        Task StartAsync();
 
+        /// <summary>
+        /// Starts the login process of the bot.
+        /// </summary>
+        Task StartAsync();
     }
 }
