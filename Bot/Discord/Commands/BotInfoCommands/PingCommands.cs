@@ -9,13 +9,13 @@ using Discord.WebSocket;
 namespace Bot.Discord.Commands.BotInfoCommands
 {
     [Name("Ping")]
-    public class PingCommand : ModuleBase<SocketCommandContext>
+    public class PingCommands : ModuleBase<SocketCommandContext>
     {
         private readonly ILogger _logger;
         private readonly DiscordShardedClient _shardedClient;
         private readonly EmbedBuilder _embed;
 
-        public PingCommand(ILogger logger, DiscordShardedClient shardedClient)
+        public PingCommands(ILogger logger, DiscordShardedClient shardedClient)
         {
             _logger = logger;
             _shardedClient = shardedClient;
