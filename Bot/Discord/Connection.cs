@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Bot.Configurations;
 using Bot.Interfaces.Discord.EventHandlers;
 using Bot.Interfaces.Discord.EventHandlers.CommandHandlers;
@@ -42,8 +43,9 @@ namespace Bot.Discord
             await _commandHandler.InitializeAsync().ConfigureAwait(false);
 
             // Wait the thread so the console application doesn't close.
-            await Task.Delay(ConfigData.Data.RestartTime * 60000).ConfigureAwait(false);
+            await Task.Delay(TimeSpan.FromDays(ConfigData.Data.RestartTime)).ConfigureAwait(false);
             await _client.StopAsync().ConfigureAwait(false);
+            await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
         }
     }
 }
