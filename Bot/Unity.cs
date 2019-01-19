@@ -55,7 +55,7 @@ namespace Bot
 
 
         /// <summary>
-        /// Resolve a objects that is registert in the <see cref="container"/>.
+        /// Resolve a objects that is registered in the <see cref="container"/>.
         /// </summary>
         /// <typeparam name="T">The object you want to resolve</typeparam>
         /// <returns>The resolved object.</returns>
