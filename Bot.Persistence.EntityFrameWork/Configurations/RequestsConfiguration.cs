@@ -4,8 +4,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Bot.Persistence.EntityFrameWork.Configurations
 {
+
+    /// <summary>
+    /// This class contains the configurations for the <see cref="Request"/> table. 
+    /// </summary>
     public class RequestsConfiguration : IEntityTypeConfiguration<Request>
     {
+
+
         public void Configure(EntityTypeBuilder<Request> builder)
         {
             builder.ToTable("Requests");
