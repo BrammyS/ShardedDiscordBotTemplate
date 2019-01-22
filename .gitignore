@@ -10,6 +10,13 @@ Bot.logger/bin/
 Bot.logger/obj/
 Bot.logger.Interfaces/bin/
 Bot.logger.Interfaces/obj/
+Bot.Persistence.EntityFrameWork/bin/
+Bot.Persistence.EntityFrameWork/obj/
+Bot.Persistence.Domain/bin/
+Bot.Persistence.Domain/obj/
+Bot.Persistence/bin/
+Bot.Persistence/obj/
+
 
 packages/
 .vs/
