@@ -17,7 +17,7 @@ namespace Bot.Persistence.EntityFrameWork.Configurations
             builder.ToTable("Users");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id).HasColumnType("bigint").HasColumnName("Id").IsRequired();
+            builder.Property(x => x.Id).HasColumnType("DECIMAL(20, 0)").HasColumnName("Id").IsRequired();
             builder.Property(x => x.Name).HasColumnType("nvarchar(MAX)").HasColumnName("Name").IsRequired();
             builder.Property(x => x.SpamWarning).HasColumnType("int").HasColumnName("SpamWarning").IsRequired();
             builder.Property(x => x.TotalTimesTimedOut).HasColumnType("int").HasColumnName("TimesTimedOut").IsRequired();

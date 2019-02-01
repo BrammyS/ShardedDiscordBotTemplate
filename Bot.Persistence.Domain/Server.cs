@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bot.Persistence.Domain
 {
@@ -6,7 +7,7 @@ namespace Bot.Persistence.Domain
     {
 
         /// <summary>The id of the server.</summary>
-        public long Id { get; set; }
+        public ulong Id { get; set; }
 
         /// <summary>The name of the server.</summary>
         public string Name { get; set; }
@@ -28,5 +29,8 @@ namespace Bot.Persistence.Domain
         /// This value is True if the bot is this in the server.
         /// </summary>
         public bool Active { get; set; }
+
+        /// <summary>All the <see cref="Requests"/> that were made in the server.</summary>
+        public List<Request> Requests { get; set; }
     }
 }

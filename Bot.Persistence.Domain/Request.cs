@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace Bot.Persistence.Domain
 {
@@ -6,7 +8,7 @@ namespace Bot.Persistence.Domain
     {
 
         /// <summary>The id of the request.</summary>
-        public long Id { get; set; }
+        public ulong Id { get; set; }
 
         /// <summary>The command that was requested.</summary>
         public string Command { get; set; }
@@ -24,12 +26,18 @@ namespace Bot.Persistence.Domain
         public DateTime TimeStamp { get; set; }
 
         /// <summary>The amount of milliseconds it took to active the command form when it received the message.</summary>
-        public long RunTime { get; set; }
+        public int RunTime { get; set; }
 
         /// <summary>The id of the server where the command was used.</summary>
-        public long ServerId { get; set; }
+        public ulong ServerId { get; set; }
+
+        /// <summary>The server where the command was used.</summary>
+        public Server Server { get; set; }
 
         /// <summary>The id of the user that used the command.</summary>
-        public long UserId { get; set; }
+        public ulong UserId { get; set; }
+
+        /// <summary>The user that used the command.</summary>
+        public User User { get; set; }
     }
 }

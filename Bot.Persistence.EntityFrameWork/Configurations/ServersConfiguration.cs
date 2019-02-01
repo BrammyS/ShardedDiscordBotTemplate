@@ -17,12 +17,12 @@ namespace Bot.Persistence.EntityFrameWork.Configurations
             builder.ToTable("Servers");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id).HasColumnType("bigint").HasColumnName("Id").IsRequired();
-            builder.Property(x => x.Name).HasColumnType("nvarchar(255)").HasColumnName("Name").IsRequired();
+            builder.Property(x => x.Id).HasColumnType("DECIMAL(20, 0)").HasColumnName("Id").IsRequired();
+            builder.Property(x => x.Name).HasColumnType("nvarchar(MAX)").HasColumnName("Name").IsRequired();
             builder.Property(x => x.JoinDate).HasColumnType("date").HasColumnName("JoinDate").IsRequired();
             builder.Property(x => x.Active).HasColumnType("bit").HasColumnName("Active").IsRequired();
             builder.Property(x => x.TotalMembers).HasColumnType("int").HasColumnName("TotalMembers").IsRequired();
-            builder.Property(x => x.Prefix).HasColumnType("nvarchar(255)").HasColumnName("Prefix").IsRequired(false);
+            builder.Property(x => x.Prefix).HasColumnType("nvarchar(MAX)").HasColumnName("Prefix").IsRequired(false);
         }
     }
 }

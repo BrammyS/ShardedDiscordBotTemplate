@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bot.Persistence.Domain
 {
@@ -6,7 +7,7 @@ namespace Bot.Persistence.Domain
     {
 
         /// <summary>The id of the user.</summary>
-        public long Id { get; set; }
+        public ulong Id { get; set; }
 
         /// <summary>The username of the user.</summary>
         public string Name { get; set; }
@@ -22,5 +23,8 @@ namespace Bot.Persistence.Domain
 
         /// <summary>The amount of times the user was using commands to fast.</summary>
         public int CommandSpam { get; set; }
+
+        /// <summary>All the <see cref="Requests"/> that were made by the user.</summary>
+        public List<Request> Requests { get; set; }
     }
 }
