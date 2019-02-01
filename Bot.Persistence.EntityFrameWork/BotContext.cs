@@ -16,7 +16,6 @@ namespace Bot.Persistence.EntityFrameWork
         public DbSet<Request> Requests { get; set; }
 
 
-        #warning REMOVE THE CONNECTION STRING
         /// <summary>
         /// Configures Entity Framework core.
         /// </summary>
