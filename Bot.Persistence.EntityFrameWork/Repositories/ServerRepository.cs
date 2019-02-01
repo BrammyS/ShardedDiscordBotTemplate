@@ -15,6 +15,8 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
         {
         }
 
+
+        /// <inheritdoc/>
         public async Task<Server> GetServerAsync(ulong id)
         {
             try
@@ -30,6 +32,8 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
             }
         }
 
+
+        /// <inheritdoc/>
         public async Task<List<ServerPrefix>> GetAllPrefixesAsync()
         {
             try
@@ -50,11 +54,16 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
             }
         }
 
+
+        /// <inheritdoc/>
         public async Task<Server> GetOrAddServer(ulong id, string serverName, int memberCount)
         {
             try
             {
                 var exists = await Context.Set<Server>().AnyAsync(x => x.Id == id).ConfigureAwait(false);
+
+                // Return the server if it exists in the database.
+                // Create a new one if it doesn't exist.
                 if (exists) return await GetServerAsync(id).ConfigureAwait(false);
                 var server = await Context.Set<Server>().AddAsync(new Server
                 {
@@ -76,4 +85,3 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
         }
     }
 }
-
