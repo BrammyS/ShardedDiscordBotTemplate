@@ -26,3 +26,4 @@ namespace Bot.Persistence.EntityFrameWork.Configurations
         }
     }
 }
+
