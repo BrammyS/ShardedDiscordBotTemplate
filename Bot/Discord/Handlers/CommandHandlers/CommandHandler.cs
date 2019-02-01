@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using Bot.Interfaces.Discord.EventHandlers.CommandHandlers;
+using Bot.Interfaces.Discord.Services;
 using Bot.Logger.Interfaces;
 using Discord;
 using Discord.Commands;
@@ -15,6 +16,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
         private readonly DiscordShardedClient _client;
         private readonly CommandService _commandService;
         private readonly ILogger _logger;
+        private readonly IPrefixService _prefixService;
         private readonly ICommandErrorHandler _commandErrorHandler;
         private readonly ICommandInputErrorHandler _commandInputErrorHandler;
         private IServiceProvider _services;
@@ -26,14 +28,16 @@ namespace Bot.Discord.Handlers.CommandHandlers
         /// <param name="client">The <see cref="DiscordShardedClient"/> that will be used to receive all the messages.</param>
         /// <param name="commandService">The <see cref="CommandService"/> that will be used to execute the commands.</param>
         /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
+        /// <param name="prefixService">The <see cref="IPrefixService"/> that will be used.</param>
         /// <param name="commandErrorHandler">The <see cref="ICommandErrorHandler"/> that will be used to handle command errors.</param>
         /// <param name="commandInputErrorHandler">The <see cref="ICommandInputErrorHandler"/> that will be used when the input for a command is wrong.</param>
-        public CommandHandler(DiscordShardedClient client, CommandService commandService, ILogger logger, 
+        public CommandHandler(DiscordShardedClient client, CommandService commandService, ILogger logger, IPrefixService prefixService,
                               ICommandErrorHandler commandErrorHandler, ICommandInputErrorHandler commandInputErrorHandler)
         {
             _client = client;
             _commandService = commandService;
             _logger = logger;
+            _prefixService = prefixService;
             _commandErrorHandler = commandErrorHandler;
             _commandInputErrorHandler = commandInputErrorHandler;
         }
@@ -93,12 +97,17 @@ namespace Bot.Discord.Handlers.CommandHandlers
             var context = new ShardedCommandContext(_client, msg);
             var argPos = 0;
 
-            // Check if the message has a valid command prefix.
+            // Check if the message has a valid default command prefix.
             if (context.Message.HasStringPrefix(Constants.Prefix, ref argPos, StringComparison.CurrentCultureIgnoreCase) ||
                 context.Message.HasMentionPrefix(_client.CurrentUser, ref argPos))
             {
                 await HandleCommandAsync(context, argPos).ConfigureAwait(false);
             }
+
+            // Check if the message has a valid custom command prefix.
+            var customPrefix = _prefixService.GetPrefix(context.Guild.Id);
+            if (customPrefix == null) return;
+            if (context.Message.HasStringPrefix(customPrefix, ref argPos, StringComparison.CurrentCultureIgnoreCase)) await HandleCommandAsync(context, argPos).ConfigureAwait(false);
         }
 
 

@@ -2,10 +2,12 @@
 using Bot.Discord.Configurations;
 using Bot.Discord.Handlers;
 using Bot.Discord.Handlers.CommandHandlers;
+using Bot.Discord.Services;
 using Bot.Interfaces;
 using Bot.Interfaces.Discord;
 using Bot.Interfaces.Discord.EventHandlers;
 using Bot.Interfaces.Discord.EventHandlers.CommandHandlers;
+using Bot.Interfaces.Discord.Services;
 using Bot.Logger.Interfaces;
 using Bot.Persistence.EntityFrameWork;
 using Bot.Persistence.EntityFrameWork.Repositories;
@@ -52,6 +54,7 @@ namespace Bot
             container.RegisterSingleton<DiscordShardedClient>(new InjectionConstructor(typeof(DiscordSocketConfig)));
             container.RegisterSingleton<CommandService>(new InjectionFactory(i => CommandConfig.GetDefault()));
             container.RegisterSingleton<IClientLogHandler, ClientLogHandler>();
+            container.RegisterSingleton<IPrefixService, PrefixService>();
 
             container.RegisterType<ICommandErrorHandler, CommandErrorHandler>(new PerThreadLifetimeManager());
             container.RegisterType<ICommandInputErrorHandler, CommandInputErrorHandler>(new PerThreadLifetimeManager());
