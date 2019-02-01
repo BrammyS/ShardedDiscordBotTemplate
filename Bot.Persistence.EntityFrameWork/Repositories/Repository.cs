@@ -3,7 +3,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Bot.Persistence.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace Bot.Persistence.EntityFrameWork.Repositories
 {
@@ -38,7 +37,7 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
 
         public T Get(ulong id)
         {
-            return Context.Set<T>().Find((long)id);
+            return Context.Set<T>().Find(id);
         }
 
         public IEnumerable<T> GetAll()

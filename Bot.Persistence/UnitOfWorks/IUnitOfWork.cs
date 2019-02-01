@@ -8,7 +8,7 @@ namespace Bot.Persistence.UnitOfWorks
     {
         IServerRepository Servers { get; }
         IUserRepository Users { get; }
-        IRequestUnitOfWork Requests { get; set; }
+        IRequestRepository Requests { get; }
         int Save();
         Task<int> SaveAsync();
 

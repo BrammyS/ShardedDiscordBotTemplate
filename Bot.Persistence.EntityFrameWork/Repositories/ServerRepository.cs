@@ -39,7 +39,7 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
                            where server.Prefix != null
                            select new ServerPrefix
                            {
-                               ServerId = (ulong)server.Id,
+                               ServerId = server.Id,
                                Prefix = server.Prefix
                            }).ToListAsync().ConfigureAwait(false);
             }
