@@ -10,22 +10,34 @@ namespace Bot.Persistence.EntityFrameWork.UnitOfWorks
 
         public IServerRepository Servers { get; }
 
+
+        /// <summary>
+        /// Creates a new <see cref="ServerUnitOfWork"/>
+        /// </summary>
+        /// <param name="context">The DbContext that will be used.</param>
+        /// <param name="serverRepository">The ServerRepository that will be used.</param>
         public ServerUnitOfWork(BotContext context, IServerRepository serverRepository)
         {
             _context = context;
             Servers = serverRepository;
         }
 
+
+        /// <inheritdoc/>
         public void Dispose()
         {
             _context.Dispose();
         }
 
+
+        /// <inheritdoc/>
         public int Save()
         {
             return _context.SaveChanges();
         }
 
+
+        /// <inheritdoc/>
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync().ConfigureAwait(false);

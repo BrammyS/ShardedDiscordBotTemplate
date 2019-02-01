@@ -10,22 +10,34 @@ namespace Bot.Persistence.EntityFrameWork.UnitOfWorks
 
         private readonly BotContext _context;
 
+
+        /// <summary>
+        /// Creates a new <see cref="RequestUnitOfWork"/>
+        /// </summary>
+        /// <param name="context">The DbContext that will be used.</param>
+        /// <param name="requestRepository">The RequestRepository that will be used.</param>
         public RequestUnitOfWork(BotContext context, IRequestRepository requestRepository)
         {
             _context = context;
             Requests = requestRepository;
         }
 
+
+        /// <inheritdoc/>
         public void Dispose()
         {
             _context.Dispose();
         }
 
+
+        /// <inheritdoc/>
         public int Save()
         {
             return _context.SaveChanges();
         }
 
+
+        /// <inheritdoc/>
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync().ConfigureAwait(false);

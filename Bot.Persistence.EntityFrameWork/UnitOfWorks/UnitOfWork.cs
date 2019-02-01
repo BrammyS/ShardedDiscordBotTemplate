@@ -8,6 +8,14 @@ namespace Bot.Persistence.EntityFrameWork.UnitOfWorks
     {
         private readonly BotContext _context;
 
+
+        /// <summary>
+        /// Creates a new <see cref="UnitOfWork"/>
+        /// </summary>
+        /// <param name="context">The DbContext that will be used.</param>
+        /// <param name="serverRepository">The ServerRepository that will be used.</param>
+        /// <param name="userRepository">The UserRepository that will be used.</param>
+        /// <param name="requestRepository">The RequestRepository that will be used.</param>
         public UnitOfWork(BotContext context, IServerRepository serverRepository, IUserRepository userRepository, IRequestRepository requestRepository)
         {
             _context = context;
@@ -15,23 +23,35 @@ namespace Bot.Persistence.EntityFrameWork.UnitOfWorks
             Users = userRepository;
             Requests = requestRepository;
         }
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
 
+        /// <inheritdoc/>
         public IServerRepository Servers { get; }
+
+        /// <inheritdoc/>
         public IRequestRepository Requests{ get; }
+
+        /// <inheritdoc/>
         public IUserRepository Users { get; }
 
+
+        /// <inheritdoc/>
         public int Save()
         {
             return _context.SaveChanges();
         }
 
+
+        /// <inheritdoc/>
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync().ConfigureAwait(false);
+        }
+
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }
