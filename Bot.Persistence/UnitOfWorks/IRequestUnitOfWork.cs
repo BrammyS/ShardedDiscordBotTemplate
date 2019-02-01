@@ -6,7 +6,7 @@ namespace Bot.Persistence.UnitOfWorks
 {
     public interface IRequestUnitOfWork : IDisposable
     {
-        IRequestsRepository Requests { get; }
+        IRequestRepository Requests { get; }
         int Save();
         Task<int> SaveAsync();
     }

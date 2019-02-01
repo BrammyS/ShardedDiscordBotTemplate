@@ -2,7 +2,7 @@
 
 namespace Bot.Persistence.Repositories
 {
-    public interface IRequestsRepository : IRepository<Request>
+    public interface IRequestRepository : IRepository<Request>
     {
 
     }
