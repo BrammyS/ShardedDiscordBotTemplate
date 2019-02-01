@@ -7,6 +7,11 @@ using Bot.Interfaces.Discord;
 using Bot.Interfaces.Discord.EventHandlers;
 using Bot.Interfaces.Discord.EventHandlers.CommandHandlers;
 using Bot.Logger.Interfaces;
+using Bot.Persistence.EntityFrameWork;
+using Bot.Persistence.EntityFrameWork.Repositories;
+using Bot.Persistence.EntityFrameWork.UnitOfWorks;
+using Bot.Persistence.Repositories;
+using Bot.Persistence.UnitOfWorks;
 using Discord.Commands;
 using Discord.WebSocket;
 using Unity;
@@ -42,7 +47,7 @@ namespace Bot
             container.RegisterType<ILogger, Logger.Logger>(new PerThreadLifetimeManager());
 
 
-            //DI for discord
+            // DI for discord
             container.RegisterSingleton<DiscordSocketConfig>(new InjectionFactory(i => SocketConfig.GetDefault()));
             container.RegisterSingleton<DiscordShardedClient>(new InjectionConstructor(typeof(DiscordSocketConfig)));
             container.RegisterSingleton<CommandService>(new InjectionFactory(i => CommandConfig.GetDefault()));
@@ -51,6 +56,16 @@ namespace Bot
             container.RegisterType<ICommandErrorHandler, CommandErrorHandler>(new PerThreadLifetimeManager());
             container.RegisterType<ICommandInputErrorHandler, CommandInputErrorHandler>(new PerThreadLifetimeManager());
             container.RegisterType<ICommandHandler, CommandHandler>(new PerThreadLifetimeManager());
+
+
+            // DI for Entity framework
+            container.RegisterType<BotContext>(new PerResolveLifetimeManager());
+            container.RegisterType<IUnitOfWork, UnitOfWork>(new PerResolveLifetimeManager());
+            container.RegisterType<IRequestUnitOfWork, RequestUnitOfWork>(new PerResolveLifetimeManager());
+            container.RegisterType<IServerUnitOfWork, ServerUnitOfWork>(new PerResolveLifetimeManager());
+            container.RegisterType<IServerRepository, ServerRepository>(new PerResolveLifetimeManager());
+            container.RegisterType<IUserRepository, UserRepository>(new PerResolveLifetimeManager());
+            container.RegisterType<IRequestRepository, RequestRepository>(new PerResolveLifetimeManager());
         }
 
 
