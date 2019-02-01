@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bot.Persistence.Domain\Bot.Persistence.Domain.csproj" />
+    <ProjectReference Include="..\Bot.Persistence\Bot.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

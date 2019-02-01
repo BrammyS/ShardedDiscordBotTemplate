@@ -3,9 +3,9 @@ using Bot.Persistence.Repositories;
 
 namespace Bot.Persistence.EntityFrameWork.Repositories
 {
-    public class RequestsRepository : Repository<Request>, IRequestRepository
+    public class RequestRepository : Repository<Request>, IRequestRepository
     {
-        public RequestsRepository(BotContext context) : base(context)
+        public RequestRepository(BotContext context) : base(context)
         {
         }
     }
