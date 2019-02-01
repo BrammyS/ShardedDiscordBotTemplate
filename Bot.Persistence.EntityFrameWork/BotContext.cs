@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bot.Persistence.EntityFrameWork
 {
+
     public class BotContext : DbContext
     {
+
         /// <summary>Table containing all the server.</summary>
         public DbSet<Server> Servers { get; set; }
 
@@ -16,10 +18,7 @@ namespace Bot.Persistence.EntityFrameWork
         public DbSet<Request> Requests { get; set; }
 
 
-        /// <summary>
-        /// Configures Entity Framework core.
-        /// </summary>
-        /// <param name="optionsBuilder">The <see cref="optionsBuilder"/> that will be used to configure EF core.</param>
+        /// <inheritdoc/>
         /// <example>
         /// Migrations:
         /// Follow these steps in the Package manager console.
@@ -34,10 +33,7 @@ namespace Bot.Persistence.EntityFrameWork
         }
 
 
-        /// <summary>
-        /// Override of OnModelCreating to configure all the models.
-        /// </summary>
-        /// <param name="modelBuilder">The <see cref="ModelBuilder"/> that will be used to configure all the models.</param>
+        /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new RequestsConfiguration());
