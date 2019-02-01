@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Bot.Configurations;
 using Bot.Interfaces.Discord.EventHandlers;
 using Bot.Interfaces.Discord.EventHandlers.CommandHandlers;
+using Bot.Interfaces.Discord.Services;
 using Discord;
 using Discord.WebSocket;
 using IConnection = Bot.Interfaces.Discord.IConnection;
@@ -14,6 +15,7 @@ namespace Bot.Discord
         private readonly DiscordShardedClient _client;
         private readonly IClientLogHandler _clientLogHandler;
         private readonly ICommandHandler _commandHandler;
+        private readonly IPrefixService _prefixService;
 
 
         /// <summary>
@@ -22,11 +24,13 @@ namespace Bot.Discord
         /// <param name="client">The <see cref="DiscordShardedClient"/> that will be used.</param>
         /// <param name="clientLogHandler">The <see cref="IClientLogHandler"/> that will log all the log messages.</param>
         /// <param name="commandHandler">The <see cref="ICommandHandler"/> that will handle all the commands.</param>
-        public Connection(DiscordShardedClient client, IClientLogHandler clientLogHandler, ICommandHandler commandHandler)
+        /// <param name="prefixService">The <see cref="IPrefixService"/> That will be used for the custom prefixes.</param>
+        public Connection(DiscordShardedClient client, IClientLogHandler clientLogHandler, ICommandHandler commandHandler, IPrefixService prefixService)
         {
             _client = client;
             _clientLogHandler = clientLogHandler;
             _commandHandler = commandHandler;
+            _prefixService = prefixService;
         }
 
 
@@ -39,6 +43,9 @@ namespace Bot.Discord
 
             // Initialize all the client logging
             _clientLogHandler.Initialize();
+
+            // Load all the custom prefixes
+            await _prefixService.LoadAllPrefixes().ConfigureAwait(false);
 
             await _commandHandler.InitializeAsync().ConfigureAwait(false);
 
