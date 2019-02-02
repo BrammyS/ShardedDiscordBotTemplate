@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Bot.Interfaces.Discord.Handlers.CommandHandlers;
+using Bot.Interfaces.Discord.Services;
 using Bot.Logger.Interfaces;
 using Discord;
 using Discord.Commands;
@@ -9,13 +10,16 @@ namespace Bot.Discord.Handlers.CommandHandlers
 {
     public class CommandInputErrorHandler : ErrorHandler, ICommandInputErrorHandler
     {
+        private readonly IPrefixService _prefixService;
 
         /// <summary>
         /// Creates a new <see cref="CommandInputErrorHandler"/>.
         /// </summary>
         /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
-        public CommandInputErrorHandler(ILogger logger) : base(logger)
+        /// <param name="prefixService"></param>
+        public CommandInputErrorHandler(ILogger logger, IPrefixService prefixService) : base(logger)
         {
+            _prefixService = prefixService;
         }
 
 
@@ -66,10 +70,14 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
             // Checking what command what used to embed the correct error.
-            if (message.Contains($"{prefix}botinfo")) return HandleBotInfoErrors(result, prefix);
-            if (message.Contains($"{prefix}ping")) return HandlePingErrors(result, prefix);
-            if (message.Contains($"{prefix}shards")) return HandleShardsErrors(result, prefix);
-
+            var defaultPrefixErrorMessage = CheckForCommand(message, result, prefix);
+            if (defaultPrefixErrorMessage != null) return defaultPrefixErrorMessage;
+            var customPrefix = _prefixService.GetPrefix(context.Guild.Id);
+            if (customPrefix != null)
+            {
+                var customPrefixErrorMessage = CheckForCommand(message, result, customPrefix);
+                if (customPrefixErrorMessage != null) return customPrefixErrorMessage;
+            }
 
             // To many or to few parameters error messages.
             if (result.Contains("BadArgCount: The input text has too many parameters."))
@@ -82,9 +90,25 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Embeds the error messages for the BotInfo command
+        /// Checks what command was used.
         /// </summary>
-        /// <param name="result">The <see cref="string"/> that contains the error message</param>
+        /// <param name="message">The <see cref="string"/> that contains the message.</param>
+        /// <param name="result">The <see cref="string"/> that contains the error message.</param>
+        /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
+        /// <returns></returns>
+        private EmbedBuilder CheckForCommand(string message, string result, string prefix)
+        {
+            if (message.Contains($"{prefix}botinfo")) return HandleBotInfoErrors(result, prefix);
+            if (message.Contains($"{prefix}ping")) return HandlePingErrors(result, prefix);
+            if (message.Contains($"{prefix}shards")) return HandleShardsErrors(result, prefix);
+            return null;
+        }
+
+
+        /// <summary>
+        /// Embeds the error messages for the BotInfo command.
+        /// </summary>
+        /// <param name="result">The <see cref="string"/> that contains the error message.</param>
         /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
         /// <returns> A embedded error message.</returns>
         private EmbedBuilder HandleBotInfoErrors(string result, string prefix)
@@ -97,9 +121,9 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Embeds the error messages for the Ping command
+        /// Embeds the error messages for the Ping command.
         /// </summary>
-        /// <param name="result">The <see cref="string"/> that contains the error message</param>
+        /// <param name="result">The <see cref="string"/> that contains the error message.</param>
         /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
         /// <returns> A embedded error message.</returns>
         private EmbedBuilder HandlePingErrors(string result, string prefix)
@@ -112,9 +136,9 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Embeds the error messages for the Shards command
+        /// Embeds the error messages for the Shards command.
         /// </summary>
-        /// <param name="result">The <see cref="string"/> that contains the error message</param>
+        /// <param name="result">The <see cref="string"/> that contains the error message.</param>
         /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
         /// <returns> A embedded error message.</returns>
         private EmbedBuilder HandleShardsErrors(string result, string prefix)
