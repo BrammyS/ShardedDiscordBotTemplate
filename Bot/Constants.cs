@@ -20,11 +20,11 @@
 
 
         /// <summary>The id of the client.</summary>
-        public const ulong BotId = 0;
+        public const ulong BotId = 541336442979483658;
 
 
         /// <summary>The username of the client.</summary>
-        public const string BotUsername = "BotUsername#0000";
+        public const string BotUsername = "BotTemplate#8315";
 
 
         /// <summary>The string for a green status emoji.</summary>
