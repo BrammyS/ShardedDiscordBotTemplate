@@ -63,11 +63,11 @@
         public const int SpamFilterSeconds = 3;
 
 
-        /// <summary>The number of times the user has to be blocked byt he spam filter to get timeout.</summary>
+        /// <summary>The amount of times the user has to be blocked byt he spam filter to get timeout.</summary>
         public const int SpamFilterTimeouts = 5;
 
 
-        /// <summary>The number of times the user will be timeout for if he/she was spamming commands.</summary>
+        /// <summary>The amount of minutes the user will be timeout for if he/she was spamming commands.</summary>
         public const int SpamFilterTimeoutMinutes = 5;
     }
 }
