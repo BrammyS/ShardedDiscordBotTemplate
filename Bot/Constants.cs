@@ -57,5 +57,17 @@
 
         /// <summary>The id of the join guild event channel.</summary>
         public const ulong JoinGuildChannelId = 0;
+
+
+        /// <summary>The number of seconds the user has to wait before using another command.</summary>
+        public const int SpamFilterSeconds = 3;
+
+
+        /// <summary>The number of times the user has to be blocked byt he spam filter to get timeout.</summary>
+        public const int SpamFilterTimeouts = 5;
+
+
+        /// <summary>The number of times the user will be timeout for if he/she was spamming commands.</summary>
+        public const int SpamFilterTimeoutMinutes = 5;
     }
 }

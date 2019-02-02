@@ -29,20 +29,20 @@ namespace Bot.Discord.Services
             using (var unitOfWork = Unity.Resolve<IUnitOfWork>())
             {
                 var user = await unitOfWork.Users.GetOrAddUserAsync(context.User.Id, context.User.Username).ConfigureAwait(false);
-                if (!(DateTime.Now.Subtract(user.CommandUsed).TotalSeconds > 3))
+                if (!(DateTime.Now.Subtract(user.CommandUsed).TotalSeconds > Constants.SpamFilterSeconds))
                 {
-                    if (user.SpamWarning >= 5)
+                    if (user.SpamWarning >= Constants.SpamFilterTimeouts)
                     {
-                        user.CommandUsed = user.CommandUsed.AddMinutes(10);
+                        user.CommandUsed = user.CommandUsed.AddMinutes(Constants.SpamFilterTimeoutMinutes);
                         user.TotalTimesTimedOut++;
                         user.SpamWarning = 0;
                         try
                         {
-                            await context.Channel.SendMessageAsync($"{context.User.Mention} you got timed out for 10 min\nBecause you were trying to use my commands to often.").ConfigureAwait(false);
+                            await context.Channel.SendMessageAsync($"{context.User.Mention} you got timed out for {Constants.SpamFilterTimeoutMinutes} min\nBecause you were trying to use my commands to often.").ConfigureAwait(false);
                         }
                         catch (HttpException)
                         {
-                            await context.User.SendMessageAsync($"{context.User.Mention} you got timed out for 10 min\nBecause you were trying to use my commands to often.").ConfigureAwait(false);
+                            await context.User.SendMessageAsync($"{context.User.Mention} you got timed out for {Constants.SpamFilterTimeoutMinutes} min\nBecause you were trying to use my commands to often.").ConfigureAwait(false);
                         }
                     }
                     else if (DateTime.Now.Subtract(user.CommandUsed).TotalSeconds > 0)
@@ -50,7 +50,7 @@ namespace Bot.Discord.Services
                         user.SpamWarning++;
                         try
                         {
-                            await context.Channel.SendMessageAsync($"pls wait {3 - Math.Round(DateTime.Now.Subtract(user.CommandUsed).TotalSeconds, 1)}s before using another command.").ConfigureAwait(false);
+                            await context.Channel.SendMessageAsync($"pls wait {Constants.SpamFilterSeconds - Math.Round(DateTime.Now.Subtract(user.CommandUsed).TotalSeconds, 1)}s before using another command.").ConfigureAwait(false);
                         }
                         catch (HttpException)
                         {
