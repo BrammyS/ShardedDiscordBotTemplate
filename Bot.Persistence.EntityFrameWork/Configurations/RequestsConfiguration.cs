@@ -17,7 +17,7 @@ namespace Bot.Persistence.EntityFrameWork.Configurations
             builder.ToTable("Requests");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id).HasColumnType("DECIMAL(20, 0)").HasColumnName("Id").ValueGeneratedOnAdd();
+            builder.Property(x => x.Id).HasColumnType("bigint").HasColumnName("Id").ValueGeneratedOnAdd();
             builder.Property(x => x.ServerId).HasColumnType("DECIMAL(20, 0)").HasColumnName("ServerId").IsRequired();
             builder.Property(x => x.UserId).HasColumnType("DECIMAL(20, 0)").HasColumnName("UserId").IsRequired();
             builder.Property(x => x.Command).HasColumnType("nvarchar(MAX)").HasColumnName("Command").IsRequired();

@@ -6,7 +6,7 @@ namespace Bot.Persistence.Domain
     {
 
         /// <summary>The id of the request.</summary>
-        public ulong Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>The command that was requested.</summary>
         public string Command { get; set; }
