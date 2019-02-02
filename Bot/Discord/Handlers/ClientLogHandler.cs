@@ -109,9 +109,10 @@ namespace Bot.Discord.Handlers
         /// <param name="shard">The shard that got disconnected.</param>
         private async Task ShardDisconnectedAsync(Exception exception, DiscordSocketClient shard)
         {
+
             try
             {
-                var channel = _client.GetGuild(403577303784882186).GetTextChannel(512966928491479040);
+                var channel = _client.GetGuild(Constants.EventSeverId).GetTextChannel(Constants.DisconnectEventChannelId);
                 await channel.SendMessageAsync($"<:RedStatus:519932993343586350> Shard: `{shard.ShardId}` Disconnected with the reason {exception.Message}").ConfigureAwait(false);
             }
             catch (Exception)
@@ -132,7 +133,7 @@ namespace Bot.Discord.Handlers
             try
             {
                 await Task.Delay(30 * 1000).ConfigureAwait(false);
-                var channel = _client.GetGuild(403577303784882186).GetTextChannel(512966928491479040);
+                var channel = _client.GetGuild(Constants.EventSeverId).GetTextChannel(Constants.ConnectEventChannelId);
                 await channel.SendMessageAsync($"<:GreenStatus:519932750296514605> Shard: `{shard.ShardId}` Connected with {shard.Latency}ms").ConfigureAwait(false);
             }
             catch (Exception)
@@ -156,7 +157,7 @@ namespace Bot.Discord.Handlers
             if (updatePing < 500 && oldPing < 500) return;
             try
             {
-                var channel = _client.GetGuild(403577303784882186).GetTextChannel(520276841970401280);
+                var channel = _client.GetGuild(Constants.EventSeverId).GetTextChannel(Constants.LatencyUpdatedEventChannelId);
                 await channel.SendMessageAsync($"Shard: `{shard.ShardId}` Latency update from **{oldPing}** ms to **{updatePing}** ms").ConfigureAwait(false);
             }
             catch (Exception)

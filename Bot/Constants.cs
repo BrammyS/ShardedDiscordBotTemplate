@@ -7,32 +7,55 @@
         public const string Prefix = "!";
 
 
-        /// <summary>The username of the owner of the bot</summary>
+        /// <summary>The username of the owner of the bot.</summary>
         public const string OwnerUsername = "Brammys#0001";
 
 
-        /// <summary>The id of the owner of this bot</summary>
+        /// <summary>The id of the owner of this bot.</summary>
         public const ulong OwnerId = 308707063993860116;
 
 
-        /// <summary>The id of the client</summary>
-        public const ulong BotId = 0000000;
+        /// <summary>The id of the client.</summary>
+        public const ulong BotId = 0;
 
 
-        /// <summary>The username of the client</summary>
+        /// <summary>The username of the client.</summary>
         public const string BotUsername = "BotUsername#0000";
 
 
-        /// <summary>The string for a green status emoji</summary>
+        /// <summary>The string for a green status emoji.</summary>
         public const string GreenStatusEmoji = "<:GreenStatus:533010751229526032>";
 
 
-        /// <summary>The string for a orange status emoji</summary>
+        /// <summary>The string for a orange status emoji.</summary>
         public const string OrangeStatusEmoji = "<:OrangeStatus:533010753196654600>";
 
 
-        /// <summary>The string for a red status emoji</summary>
+        /// <summary>The string for a red status emoji.</summary>
         public const string RedStatusEmoji = "<:RedStatus:533010751074467851>";
 
+
+        /// <summary>The id of the support server.</summary>
+        public const ulong SupportServerId = 532980716787597314;
+
+
+        /// <summary>The id of the event log server.</summary>
+        public const ulong EventSeverId = SupportServerId;
+
+
+        /// <summary>The id of the disconnect event channel.</summary>
+        public const ulong DisconnectEventChannelId = 541323020854231061;
+
+
+        /// <summary>The id of the connect event channel.</summary>
+        public const ulong ConnectEventChannelId = 541323020854231061;
+
+
+        /// <summary>The id of the latency updated event channel.</summary>
+        public const ulong LatencyUpdatedEventChannelId = 541323045529190412;
+
+
+        /// <summary>The id of the join guild event channel.</summary>
+        public const ulong JoinGuildChannelId = 0;
     }
 }
