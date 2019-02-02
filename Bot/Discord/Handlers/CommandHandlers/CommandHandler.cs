@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Bot.Interfaces.Discord.Handlers.CommandHandlers;
 using Bot.Interfaces.Discord.Services;
 using Bot.Logger.Interfaces;
+using Bot.Persistence.Domain;
+using Bot.Persistence.UnitOfWorks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
@@ -19,6 +23,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
         private readonly IPrefixService _prefixService;
         private readonly ICommandErrorHandler _commandErrorHandler;
         private readonly ICommandInputErrorHandler _commandInputErrorHandler;
+        private readonly ISpamFilter _spamFilter;
         private IServiceProvider _services;
 
 
@@ -31,8 +36,9 @@ namespace Bot.Discord.Handlers.CommandHandlers
         /// <param name="prefixService">The <see cref="IPrefixService"/> that will be used.</param>
         /// <param name="commandErrorHandler">The <see cref="ICommandErrorHandler"/> that will be used to handle command errors.</param>
         /// <param name="commandInputErrorHandler">The <see cref="ICommandInputErrorHandler"/> that will be used when the input for a command is wrong.</param>
+        /// <param name="spamFilter">The <see cref="ISpamFilter"/> that will be used to filter out users that are spamming commands.</param>
         public CommandHandler(DiscordShardedClient client, CommandService commandService, ILogger logger, IPrefixService prefixService,
-                              ICommandErrorHandler commandErrorHandler, ICommandInputErrorHandler commandInputErrorHandler)
+                              ICommandErrorHandler commandErrorHandler, ICommandInputErrorHandler commandInputErrorHandler, ISpamFilter spamFilter)
         {
             _client = client;
             _commandService = commandService;
@@ -40,6 +46,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
             _prefixService = prefixService;
             _commandErrorHandler = commandErrorHandler;
             _commandInputErrorHandler = commandInputErrorHandler;
+            _spamFilter = spamFilter;
         }
 
         /// <inheritdoc />
@@ -120,19 +127,33 @@ namespace Bot.Discord.Handlers.CommandHandlers
         {
             try
             {
-                // Searching for the command that should be executed
+
+                // Start a stopwatch to log the runtime. 
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                // Searching for the command that should be executed.
                 var searchResult = _commandService.Search(context, argPos);
 
-                // If no command were found, return
+                // If no command were found, return.
                 if (searchResult.Commands == null || searchResult.Commands.Count == 0)
                 {
+                    stopwatch.Stop();
+                    return;
+                }
+
+                // If the user is spamming commands, return.
+                if (!await _spamFilter.FilterAsync(context).ConfigureAwait(false))
+                {
+                    stopwatch.Stop();
+                    await SaveRequestDataAsync(stopwatch, context, searchResult, false, "Blocked by spam filter").ConfigureAwait(false);
                     return;
                 }
 
                 // Execute the command.
                 var result = await _commandService.ExecuteAsync(context, argPos, _services).ConfigureAwait(false);
 
-                // If result of the command is is un succes full, send a embedded error message.
+                // If result of the command is is un success full, send a embedded error message.
                 // Warning: This will only be false if the input is wrong and not when a error is occuring while the command is running.
                 if (!result.IsSuccess)
                 {
@@ -140,6 +161,9 @@ namespace Bot.Discord.Handlers.CommandHandlers
                     var embed = await _commandInputErrorHandler.HandleErrorsAsync(result, context).ConfigureAwait(false);
                     if (embed != null) await context.Channel.SendMessageAsync("", false, embed.Build()).ConfigureAwait(false);
                 }
+
+                stopwatch.Stop();
+                await SaveRequestDataAsync(stopwatch, context, searchResult, result.IsSuccess, result.ErrorReason).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -163,6 +187,29 @@ namespace Bot.Discord.Handlers.CommandHandlers
                 var embed = await _commandErrorHandler.HandleErrorsAsync(commandException).ConfigureAwait(false);
                 if (embed != null) await commandException.Context.Channel.SendMessageAsync("", false, embed.Build()).ConfigureAwait(false);
                 _logger.Log("CommandService/ErrorDetails", $"Message: {logMessage.Message}, exception: {logMessage.Exception}, source: {logMessage.Source}");
+            }
+        }
+
+
+        /// <summary>
+        /// Saves the request data to the database.
+        /// </summary>
+        /// <returns>An awaitable <see cref="Task"/>.</returns>
+        private async Task SaveRequestDataAsync(Stopwatch stopwatch, ShardedCommandContext context, SearchResult searchResult, bool isSuccessFul, string errorMessage = "")
+        {
+            using (var unitOfWork = Unity.Resolve<IRequestUnitOfWork>())
+            {
+                await unitOfWork.Requests.AddAsync(new Request
+                {
+                    Command = searchResult.Commands.FirstOrDefault().Command.Name,
+                    ErrorMessage = errorMessage,
+                    IsSuccessFull = isSuccessFul,
+                    RunTime = stopwatch.ElapsedMilliseconds,
+                    ServerId = context.Guild.Id,
+                    UserId = context.User.Id,
+                    TimeStamp = DateTime.Now
+                }).ConfigureAwait(false);
+                await unitOfWork.SaveAsync().ConfigureAwait(false);
             }
         }
     }
