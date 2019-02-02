@@ -1,5 +1,9 @@
 ﻿namespace Bot
 {
+
+    /// <summary>
+    /// This class contains all the constant variables for the bot.
+    /// </summary>
     public static class Constants
     {
 
@@ -56,7 +60,7 @@
 
 
         /// <summary>The id of the join guild event channel.</summary>
-        public const ulong JoinGuildChannelId = 0;
+        public const ulong JoinGuildChannelId = 541336296724103169;
 
 
         /// <summary>The number of seconds the user has to wait before using another command.</summary>

@@ -32,6 +32,17 @@ namespace Bot.Discord.Handlers
             _client.ShardLatencyUpdated += ShardLatencyEvent;
             _client.ShardDisconnected += ShardDisconnectedEvent;
             _client.ShardConnected += ShardConnectedEvent;
+            _client.JoinedGuild += ClientJoinedGuildEvent;
+        }
+
+        /// <summary>
+        /// Handles the <see cref="BaseSocketClient.JoinedGuild"/> event.
+        /// </summary>
+        /// <param name="guild">The server that the client joined.</param>
+        private Task ClientJoinedGuildEvent(SocketGuild guild)
+        {
+            Task.Run(async () => await ClientJoinedGuild(guild).ConfigureAwait(false));
+            return Task.CompletedTask;
         }
 
 
@@ -164,6 +175,26 @@ namespace Bot.Discord.Handlers
             {
                 // Logs the message to a txt file if it was unable to send the message.
                 _logger.Log("Connection/Latency", $"Shard: {shard.ShardId} Latency: {updatePing}");
+            }
+        }
+
+
+        /// <summary>
+        /// Sends a message that the client joined a server.
+        /// </summary>
+        /// <param name="guild">The server that the client joined.</param>
+        private async Task ClientJoinedGuild(SocketGuild guild)
+        {
+
+            try
+            {
+                var channel = _client.GetGuild(Constants.EventSeverId).GetTextChannel(Constants.JoinGuildChannelId);
+                await channel.SendMessageAsync($"Joined server: {guild.Name}, Id: {guild.Id}, MemberCount: {guild.MemberCount}.").ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                // Logs the message to a txt file if it was unable to send the message.
+                _logger.Log("Connection/Latency", $"Joined server: {guild.Name}, Id: {guild.Id}, MemberCount: {guild.MemberCount}.");
             }
         }
     }
