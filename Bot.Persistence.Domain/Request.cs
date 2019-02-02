@@ -24,7 +24,7 @@ namespace Bot.Persistence.Domain
         public DateTime TimeStamp { get; set; }
 
         /// <summary>The amount of milliseconds it took to active the command form when it received the message.</summary>
-        public int RunTime { get; set; }
+        public long RunTime { get; set; }
 
         /// <summary>The id of the server where the command was used.</summary>
         public ulong ServerId { get; set; }

@@ -23,7 +23,7 @@ namespace Bot.Persistence.EntityFrameWork.Configurations
             builder.Property(x => x.Command).HasColumnType("nvarchar(MAX)").HasColumnName("Command").IsRequired();
             builder.Property(x => x.ErrorMessage).HasColumnType("nvarchar(MAX)").HasColumnName("ErrorMessage").IsRequired(false);
             builder.Property(x => x.IsSuccessFull).HasColumnType("bit").HasColumnName("IsSuccessFull").IsRequired();
-            builder.Property(x => x.RunTime).HasColumnType("int").HasColumnName("RunTime").IsRequired();
+            builder.Property(x => x.RunTime).HasColumnType("bigint").HasColumnName("RunTime").IsRequired();
             builder.Property(x => x.TimeStamp).HasColumnType("datetime").HasColumnName("TimeStamp").IsRequired();
         }
     }
