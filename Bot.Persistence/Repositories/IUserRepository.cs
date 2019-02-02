@@ -13,7 +13,7 @@ namespace Bot.Persistence.Repositories
         /// <param name="id">The id of the user.</param>
         /// <param name="userName">The name of the user.</param>
         /// <returns>An awaitable <see cref="Task"/> that returns a <see cref="User"/>.</returns>
-        Task<User> GetOrAddUser(ulong id, string userName);
+        Task<User> GetOrAddUserAsync(ulong id, string userName);
     }
 }
 

@@ -59,6 +59,7 @@ namespace Bot
             container.RegisterType<ICommandErrorHandler, CommandErrorHandler>(new PerThreadLifetimeManager());
             container.RegisterType<ICommandInputErrorHandler, CommandInputErrorHandler>(new PerThreadLifetimeManager());
             container.RegisterType<ICommandHandler, CommandHandler>(new PerThreadLifetimeManager());
+            container.RegisterType<ISpamFilter, SpamFilter>(new PerThreadLifetimeManager());
 
 
             // DI for Entity framework

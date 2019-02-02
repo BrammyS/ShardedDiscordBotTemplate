@@ -26,7 +26,7 @@ namespace Bot.Persistence.Repositories
         /// <param name="serverName">The name of the server.</param>
         /// <param name="memberCount">The memberCount of the server.</param>
         /// <returns>An awaitable <see cref="Task"/> that returns a <see cref="Server"/>.</returns>
-        Task<Server> GetOrAddServer(ulong id, string serverName, int memberCount);
+        Task<Server> GetOrAddServerAsync(ulong id, string serverName, int memberCount);
 
 
         /// <summary>

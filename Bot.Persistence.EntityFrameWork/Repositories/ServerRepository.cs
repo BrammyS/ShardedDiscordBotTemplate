@@ -56,7 +56,7 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
 
 
         /// <inheritdoc/>
-        public async Task<Server> GetOrAddServer(ulong id, string serverName, int memberCount)
+        public async Task<Server> GetOrAddServerAsync(ulong id, string serverName, int memberCount)
         {
             try
             {
