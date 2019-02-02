@@ -1,5 +1,5 @@
 ﻿using System;
-using Bot.Interfaces.Discord.EventHandlers.CommandHandlers;
+using Bot.Interfaces.Discord.Handlers.CommandHandlers;
 using Bot.Logger.Interfaces;
 using Discord;
 

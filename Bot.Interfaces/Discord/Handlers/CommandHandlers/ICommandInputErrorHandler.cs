@@ -2,7 +2,7 @@
 using Discord;
 using Discord.Commands;
 
-namespace Bot.Interfaces.Discord.EventHandlers.CommandHandlers
+namespace Bot.Interfaces.Discord.Handlers.CommandHandlers
 {
     public interface ICommandInputErrorHandler
     {

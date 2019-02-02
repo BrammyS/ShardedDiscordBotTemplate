@@ -1,4 +1,4 @@
-﻿namespace Bot.Interfaces.Discord.EventHandlers
+﻿namespace Bot.Interfaces.Discord.Handlers
 {
     public interface IClientLogHandler
     {

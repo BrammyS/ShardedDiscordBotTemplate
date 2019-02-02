@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Bot.Configurations;
-using Bot.Interfaces.Discord.EventHandlers;
-using Bot.Interfaces.Discord.EventHandlers.CommandHandlers;
+using Bot.Interfaces.Discord.Handlers;
+using Bot.Interfaces.Discord.Handlers.CommandHandlers;
 using Bot.Interfaces.Discord.Services;
 using Discord;
 using Discord.WebSocket;

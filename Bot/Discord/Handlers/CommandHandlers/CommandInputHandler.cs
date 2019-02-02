@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Bot.Interfaces.Discord.EventHandlers.CommandHandlers;
+using Bot.Interfaces.Discord.Handlers.CommandHandlers;
 using Bot.Logger.Interfaces;
 using Discord;
 using Discord.Commands;

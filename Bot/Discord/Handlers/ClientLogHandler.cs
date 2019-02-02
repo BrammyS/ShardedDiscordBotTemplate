@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Bot.Interfaces.Discord.EventHandlers;
+using Bot.Interfaces.Discord.Handlers;
 using Bot.Logger.Interfaces;
 using Discord;
 using Discord.WebSocket;
