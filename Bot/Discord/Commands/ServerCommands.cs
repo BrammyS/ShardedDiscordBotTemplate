@@ -37,7 +37,7 @@ namespace Bot.Discord.Commands
             using (var unitOfWork = Unity.Resolve<IServerUnitOfWork>())
             {
                 var server = await unitOfWork.Servers
-                    .GetOrAddServer(Context.Guild.Id, Context.Guild.Name, Context.Guild.MemberCount)
+                    .GetOrAddServerAsync(Context.Guild.Id, Context.Guild.Name, Context.Guild.MemberCount)
                     .ConfigureAwait(false);
 
                 var customPrefixService = Unity.Resolve<IPrefixService>();
@@ -76,7 +76,7 @@ namespace Bot.Discord.Commands
             using (var unitOfWork = Unity.Resolve<IServerUnitOfWork>())
             {
                 var server = await unitOfWork.Servers
-                    .GetOrAddServer(Context.Guild.Id, Context.Guild.Name, Context.Guild.MemberCount)
+                    .GetOrAddServerAsync(Context.Guild.Id, Context.Guild.Name, Context.Guild.MemberCount)
                     .ConfigureAwait(false);
 
                 var customPrefixService = Unity.Resolve<IPrefixService>();
