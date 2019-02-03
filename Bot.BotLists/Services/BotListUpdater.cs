@@ -38,7 +38,7 @@ namespace Bot.BotLists.Services
 
 
         /// <inheritdoc />
-        public async Task UpdateStatusAsync(ulong botId, int shardCount, int[] guildCounts, int[] shardIds)
+        public async Task UpdateBotListStatsAsync(ulong botId, int shardCount, int[] guildCounts, int[] shardIds)
         {
 
             await UpdateDiscordBotsDotOrg(botId, shardCount, guildCounts, shardIds).ConfigureAwait(false);

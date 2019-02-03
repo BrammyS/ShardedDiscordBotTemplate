@@ -14,7 +14,7 @@ namespace Bot.BotLists.Interfaces.Services
         /// <param name="guildCounts">The amount of server the client is in.</param>
         /// <param name="shardIds">The shard id.</param>
         /// <returns>An awaitable <see cref="Task"/>.</returns>
-        Task UpdateStatusAsync(ulong botId, int shardCount, int[] guildCounts, int[] shardIds);
+        Task UpdateBotListStatsAsync(ulong botId, int shardCount, int[] guildCounts, int[] shardIds);
 
     }
 }

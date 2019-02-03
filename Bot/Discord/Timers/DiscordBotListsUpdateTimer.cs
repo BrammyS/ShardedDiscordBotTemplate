@@ -31,16 +31,24 @@ namespace Bot.Discord.Timers
             return Task.CompletedTask;
         }
 
+
+        /// <summary>
+        /// Activated when <see cref="_timer"/> is elapsed.
+        /// </summary>
         private async void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             await UpdateStatsAsync().ConfigureAwait(false);
         }
 
+
+        /// <summary>
+        /// Updates all discords list stats.
+        /// </summary>
         private async Task UpdateStatsAsync()
         {
             var guildCountArray = _client.Shards.Select(x => x.Guilds.Count).ToArray();
             var shardIdArray = _client.Shards.Select(x => x.ShardId).ToArray();
-            await _botListUpdater.UpdateStatusAsync(_client.CurrentUser.Id, _client.Shards.Count, guildCountArray, shardIdArray).ConfigureAwait(false);
+            await _botListUpdater.UpdateBotListStatsAsync(_client.CurrentUser.Id, _client.Shards.Count, guildCountArray, shardIdArray).ConfigureAwait(false);
         }
     }
 }

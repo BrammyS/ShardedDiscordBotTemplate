@@ -27,7 +27,7 @@ namespace Bot.Discord
         /// <param name="clientLogHandler">The <see cref="IClientLogHandler"/> that will log all the log messages.</param>
         /// <param name="commandHandler">The <see cref="ICommandHandler"/> that will handle all the commands.</param>
         /// <param name="prefixService">The <see cref="IPrefixService"/> That will be used for the custom prefixes.</param>
-        /// <param name="botListsUpdateTimer">The timer that will be used to active UpdateStatusAsync().</param>
+        /// <param name="botListsUpdateTimer">The timer that will be used to active UpdateBotListStatsAsync().</param>
         public Connection(DiscordShardedClient client, IClientLogHandler clientLogHandler, ICommandHandler commandHandler, IPrefixService prefixService, DiscordBotListsUpdateTimer botListsUpdateTimer)
         {
             _client = client;
