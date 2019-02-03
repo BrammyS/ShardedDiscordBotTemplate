@@ -73,5 +73,9 @@
 
         /// <summary>The amount of minutes the user will be timeout for if he/she was spamming commands.</summary>
         public const int SpamFilterTimeoutMinutes = 5;
+
+
+        /// <summary>The amount of minutes there will be between updating the bot lists info.</summary>
+        public const int BotListUpdateMinutes = 15;
     }
 }

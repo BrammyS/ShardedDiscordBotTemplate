@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bot.BotLists\Bot.BotLists.csproj" />
     <ProjectReference Include="..\Bot.Interfaces\Bot.Interfaces.csproj" />
     <ProjectReference Include="..\Bot.Logger\Bot.Logger.csproj" />
     <ProjectReference Include="..\Bot.Persistence.EntityFrameWork\Bot.Persistence.EntityFrameWork.csproj" />

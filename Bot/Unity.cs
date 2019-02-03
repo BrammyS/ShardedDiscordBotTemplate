@@ -1,8 +1,11 @@
-﻿using Bot.Discord;
+﻿using Bot.BotLists.Interfaces.Services;
+using Bot.BotLists.Services;
+using Bot.Discord;
 using Bot.Discord.Configurations;
 using Bot.Discord.Handlers;
 using Bot.Discord.Handlers.CommandHandlers;
 using Bot.Discord.Services;
+using Bot.Discord.Timers;
 using Bot.Interfaces;
 using Bot.Interfaces.Discord;
 using Bot.Interfaces.Discord.Handlers;
@@ -55,6 +58,8 @@ namespace Bot
             container.RegisterSingleton<CommandService>(new InjectionFactory(i => CommandConfig.GetDefault()));
             container.RegisterSingleton<IClientLogHandler, ClientLogHandler>();
             container.RegisterSingleton<IPrefixService, PrefixService>();
+            container.RegisterSingleton<IBotListUpdater, BotListUpdater>();
+            container.RegisterSingleton<DiscordBotListsUpdateTimer>();
 
             container.RegisterType<ICommandErrorHandler, CommandErrorHandler>(new PerThreadLifetimeManager());
             container.RegisterType<ICommandInputErrorHandler, CommandInputErrorHandler>(new PerThreadLifetimeManager());
