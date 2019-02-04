@@ -40,3 +40,8 @@ These instructions will get you a copy of the bot up and running on your local m
 * **Bram Esendam** - *Initial work* - [GitHub](https://github.com/BramEsendam)
 
 See also the list of [contributors](https://github.com/BramEsendam/BotTemplate/contributors) who participated in this project.
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
