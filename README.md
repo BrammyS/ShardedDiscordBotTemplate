@@ -26,3 +26,9 @@ These instructions will get you a copy of the bot up and running on your local m
 * [Discord.Net](https://github.com/discord-net/Discord.Net) - An unofficial .Net wrapper for the Discord API.
 * [EF core](https://docs.microsoft.com/en-us/ef/core/) - The object-relational mapper.
 * [Unity](https://github.com/unitycontainer) - Used for dependency injection.
+
+## Authors
+
+* **Bram Esendam** - *Initial work* - [GitHub](https://github.com/BramEsendam)
+
+See also the list of [contributors](https://github.com/BramEsendam/BotTemplate/contributors) who participated in this project.
