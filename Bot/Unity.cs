@@ -57,6 +57,7 @@ namespace Bot
             container.RegisterSingleton<DiscordShardedClient>(new InjectionConstructor(typeof(DiscordSocketConfig)));
             container.RegisterSingleton<CommandService>(new InjectionFactory(i => CommandConfig.GetDefault()));
             container.RegisterSingleton<IClientLogHandler, ClientLogHandler>();
+            container.RegisterSingleton<IMiscEventHandler, MiscEventHandler>();
             container.RegisterSingleton<IPrefixService, PrefixService>();
             container.RegisterSingleton<IBotListUpdater, BotListUpdater>();
             container.RegisterSingleton<DiscordBotListsUpdateTimer>();
