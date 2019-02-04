@@ -50,9 +50,6 @@ namespace Bot.Discord
 
             // Load all the custom prefixes
             await _prefixService.LoadAllPrefixes().ConfigureAwait(false);
-            
-            // Start all timers
-            await StartAllTimers().ConfigureAwait(false);
 
             await _commandHandler.InitializeAsync().ConfigureAwait(false);
 
@@ -60,15 +57,6 @@ namespace Bot.Discord
             await Task.Delay(TimeSpan.FromDays(ConfigData.Data.RestartTime)).ConfigureAwait(false);
             await _client.StopAsync().ConfigureAwait(false);
             await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
-        }
-
-
-        /// <summary>
-        /// Starts all the timers.
-        /// </summary>
-        private async Task StartAllTimers()
-        {
-            await _botListsUpdateTimer.TimerAsync().ConfigureAwait(false);
         }
     }
 }
