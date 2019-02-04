@@ -19,6 +19,16 @@ These instructions will get you a copy of the bot up and running on your local m
    * EF core bot: Follow the Basic bot steps above + follow the migration steps in the [BotContext](https://github.com/BramEsendam/BotTemplate/blob/master/Bot.Persistence.EntityFrameWork/BotContext.cs) go to [here](https://docs.microsoft.com/en-us/ef/core/get-started/netcore/new-db-sqlite) for more info on migrations.
 5. Enjoy your bot!
 
+## Features
+
+#### Basic bot
+
+![image](Img/BasicBot.png "Basic bot preview")
+
+#### EF core bot
+
+![image](Img/EfCore.png "Basic bot preview")
+
 ## Built With
 
 * [Discord.Net](https://github.com/discord-net/Discord.Net) - An unofficial .Net wrapper for the Discord API.
