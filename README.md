@@ -8,7 +8,7 @@ You can switch bot templates by switching branches.
 2. A bot with a database using EF core plus the same features as template 1.
 3. A bot with a timer that sends bot stats to [DBL](https://discordbots.org/) plus the same features as template 1 and 2.
 
-### Cloning
+## Cloning
 
 These instructions will get you a copy of the bot up and running on your local machine for development and testing purposes.
 
