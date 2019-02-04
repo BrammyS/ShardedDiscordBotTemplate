@@ -5,7 +5,7 @@ This is an advanced c# discord bot template. With sharding and EF core and more!
 ## What Bot templates Are Available?
 You can switch bot templates by switching branches.
 1. A basic bot with sharding and basic command.
-2. A bot with a database using EF core plus the same features as template 1.
+2. A bot with a database using Entity framework + the same features as template 1.
 
 ## Cloning
 
@@ -16,7 +16,7 @@ These instructions will get you a copy of the bot up and running on your local m
 3. Start the bot. This will create one or more config files in your debug/release folder of your project. 
 4. Please follow the steps below for the bot template that you chose.
    * Basic bot: Add your bot token to the ConfigData.json file.
-   * EF core bot: Follow the Basic bot steps above + follow the migration steps in the [BotContext](https://github.com/BramEsendam/BotTemplate/blob/master/Bot.Persistence.EntityFrameWork/BotContext.cs) go to [here](https://docs.microsoft.com/en-us/ef/core/get-started/netcore/new-db-sqlite) for more info on migrations.
+   * Entity framework bot: Follow the Basic bot steps above + follow the migration steps in the [BotContext](https://github.com/BramEsendam/BotTemplate/blob/master/Bot.Persistence.EntityFrameWork/BotContext.cs) go to [here](https://docs.microsoft.com/en-us/ef/core/get-started/netcore/new-db-sqlite) for more info on migrations.
 5. Enjoy your bot!
 
 ## Features
@@ -25,7 +25,7 @@ These instructions will get you a copy of the bot up and running on your local m
 
 ![image](Img/BasicBot.png "Basic bot preview")
 
-#### EF core bot
+#### Entity framework bot
 
 ![image](Img/EfCore.png "Basic bot preview")
 
