@@ -10,7 +10,7 @@ namespace Bot.BotLists.Configurations
         private const string ConfigFolder = "Configs";
 
         /// <summary>The file name of the config file.</summary>
-        private const string ConfigFile = "TokenConfig.json";
+        private const string ConfigFile = "BotListsConfig.json";
 
         public static TokenConfig TokenConfig;
 
