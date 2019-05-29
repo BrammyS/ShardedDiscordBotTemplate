@@ -53,9 +53,9 @@ namespace Bot
 
 
             // DI for discord
-            container.RegisterSingleton<DiscordSocketConfig>(new InjectionFactory(i => SocketConfig.GetDefault()));
+            container.RegisterFactory<DiscordSocketConfig>(i => SocketConfig.GetDefault(), new SingletonLifetimeManager());
+            container.RegisterFactory<CommandService>(i => CommandConfig.GetDefault(), new SingletonLifetimeManager());
             container.RegisterSingleton<DiscordShardedClient>(new InjectionConstructor(typeof(DiscordSocketConfig)));
-            container.RegisterSingleton<CommandService>(new InjectionFactory(i => CommandConfig.GetDefault()));
             container.RegisterSingleton<IClientLogHandler, ClientLogHandler>();
             container.RegisterSingleton<IMiscEventHandler, MiscEventHandler>();
             container.RegisterSingleton<IPrefixService, PrefixService>();
@@ -86,7 +86,7 @@ namespace Bot
         /// <returns>The resolved object.</returns>
         public static T Resolve<T>()
         {
-            return (T)Container.Resolve(typeof(T), string.Empty, new CompositeResolverOverride());
+            return (T)Container.Resolve(typeof(T));
         }
     }
 }
