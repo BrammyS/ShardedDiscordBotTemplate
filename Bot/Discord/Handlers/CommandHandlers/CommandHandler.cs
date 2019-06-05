@@ -205,7 +205,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
                     ErrorMessage = errorMessage,
                     IsSuccessFull = isSuccessFul,
                     RunTime = stopwatch.ElapsedMilliseconds,
-                    ServerId = context.Guild.Id,
+                    ServerId = context.Guild?.Id,
                     UserId = context.User.Id,
                     TimeStamp = DateTime.Now
                 }).ConfigureAwait(false);

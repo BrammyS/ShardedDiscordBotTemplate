@@ -33,7 +33,7 @@ namespace Bot.Logger
 
 
         /// <inheritdoc />
-        public void LogCommandUsed(ulong id, int shardId, ulong channel, ulong userId, string commandName)
+        public void LogCommandUsed(ulong? id, int shardId, ulong channel, ulong userId, string commandName)
         {
             Log($"GuildId: {id} || ShardId: {shardId} || ChannelId: {channel} || UserId: {userId} || Used: {commandName}");
         }
