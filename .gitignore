@@ -1,22 +1,5 @@
-Bot/bin/
-Bot/obj/
-Bot.Interfaces/bin/
-Bot.Interfaces/obj/
-Bot.BotLists/bin/
-Bot.BotLists/obj/
-Bot.BotLists.Interfaces/bin/
-Bot.BotLists.Interfaces/obj/
-Bot.logger/bin/
-Bot.logger/obj/
-Bot.logger.Interfaces/bin/
-Bot.logger.Interfaces/obj/
-Bot.Persistence.EntityFrameWork/bin/
-Bot.Persistence.EntityFrameWork/obj/
-Bot.Persistence.Domain/bin/
-Bot.Persistence.Domain/obj/
-Bot.Persistence/bin/
-Bot.Persistence/obj/
-
+bin/
+obj/
 
 packages/
 .vs/
