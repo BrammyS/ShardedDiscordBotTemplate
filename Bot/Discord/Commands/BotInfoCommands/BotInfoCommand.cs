@@ -47,7 +47,7 @@ namespace Bot.Discord.Commands.BotInfoCommands
             _embed.WithColor(new Color(255, 255, 255));
             _embed.WithCurrentTimestamp();
             await ReplyAsync("", false, _embed.Build()).ConfigureAwait(false);
-            _logger.LogCommandUsed(Context.Guild.Id, Context.Client.ShardId, Context.Channel.Id, Context.User.Id, "BotInfo");
+            _logger.LogCommandUsed(Context.Guild?.Id, Context.Client.ShardId, Context.Channel.Id, Context.User.Id, "BotInfo");
         }
     }
 }

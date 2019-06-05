@@ -27,7 +27,7 @@ namespace Bot.Persistence.Domain
         public long RunTime { get; set; }
 
         /// <summary>The id of the server where the command was used.</summary>
-        public ulong ServerId { get; set; }
+        public ulong? ServerId { get; set; }
 
         /// <summary>The server where the command was used.</summary>
         public Server Server { get; set; }

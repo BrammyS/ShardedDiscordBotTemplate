@@ -42,6 +42,6 @@ namespace Bot.Logger.Interfaces
         /// <param name="channelId">The channel id where the command was used.</param>
         /// <param name="userId">The user id of the user.</param>
         /// <param name="commandName">The name of the command that was used.</param>
-        void LogCommandUsed(ulong id, int shardId, ulong channelId, ulong userId, string commandName);
+        void LogCommandUsed(ulong? id, int shardId, ulong channelId, ulong userId, string commandName);
     }
 }
