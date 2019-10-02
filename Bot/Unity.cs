@@ -61,7 +61,7 @@ namespace Bot
         /// <returns>The resolved object.</returns>
         public static T Resolve<T>()
         {
-            return (T)Container.Resolve(typeof(T), string.Empty, new CompositeResolverOverride());
+            return (T)Container.Resolve(typeof(T));
         }
     }
 }
