@@ -1,4 +1,4 @@
-# BotTemplate
+# Discord Bot Template
 
 This is an advanced c# discord bot template. With sharding and EF core and more!
 
