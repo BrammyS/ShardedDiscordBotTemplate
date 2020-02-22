@@ -38,9 +38,9 @@ namespace Bot.Persistence.EntityFrameWork.UnitOfWorks
 
 
         /// <inheritdoc/>
-        public async Task<int> SaveAsync()
+        public Task<int> SaveAsync()
         {
-            return await _context.SaveChangesAsync().ConfigureAwait(false);
+            return _context.SaveChangesAsync();
         }
     }
 }

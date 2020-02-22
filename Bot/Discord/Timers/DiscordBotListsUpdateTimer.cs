@@ -44,11 +44,11 @@ namespace Bot.Discord.Timers
         /// <summary>
         /// Updates all discords list stats.
         /// </summary>
-        private async Task UpdateStatsAsync()
+        private Task UpdateStatsAsync()
         {
             var guildCountArray = _client.Shards.Select(x => x.Guilds.Count).ToArray();
             var shardIdArray = _client.Shards.Select(x => x.ShardId).ToArray();
-            await _botListUpdater.UpdateBotListStatsAsync(_client.CurrentUser.Id, _client.Shards.Count, guildCountArray, shardIdArray).ConfigureAwait(false);
+            return _botListUpdater.UpdateBotListStatsAsync(_client.CurrentUser.Id, _client.Shards.Count, guildCountArray, shardIdArray);
         }
     }
 }

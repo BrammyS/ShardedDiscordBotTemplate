@@ -6,12 +6,12 @@ namespace Bot
 {
     internal class Program
     {
-        private static async Task Main()
+        private static Task Main()
         {
             Console.SetBufferSize(1000, short.MaxValue - 1);
             Unity.RegisterTypes();
             var bot = Unity.Resolve<IBot>();
-            await bot.StartAsync().ConfigureAwait(false);
+            return bot.StartAsync();
         }
     }
 }

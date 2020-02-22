@@ -20,9 +20,9 @@ namespace Bot
 
 
         /// <inheritdoc />
-        public async Task StartAsync()
+        public Task StartAsync()
         {
-            await _connection.ConnectAsync().ConfigureAwait(false);
+            return _connection.ConnectAsync();
         }
     }
 }

@@ -22,9 +22,9 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
 
 
         /// <inheritdoc/>
-        public async Task AddAsync(T entity)
+        public Task AddAsync(T entity)
         {
-            await Context.Set<T>().AddAsync(entity).ConfigureAwait(false);
+            return Context.Set<T>().AddAsync(entity);
         }
 
 
@@ -36,9 +36,9 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
 
 
         /// <inheritdoc/>
-        public async Task AddRangeAsync(IEnumerable<T> entities)
+        public Task AddRangeAsync(IEnumerable<T> entities)
         {
-            await Context.Set<T>().AddRangeAsync(entities).ConfigureAwait(false);
+            return Context.Set<T>().AddRangeAsync(entities);
         }
 
 
