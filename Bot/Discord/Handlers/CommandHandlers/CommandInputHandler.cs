@@ -56,16 +56,13 @@ namespace Bot.Discord.Handlers.CommandHandlers
             // If error is a Missing permissions error, send embedded error message.
             if (result.Contains("The server responded with error 50013: Missing Permissions") || result.Contains("UnmetPrecondition: Bot requires guild permission"))
             {
-                if (context is SocketCommandContext commandContext)
-                {
-                    var guildPermissions = commandContext.Guild.CurrentUser.Roles.Select(x => x.Permissions).ToList();
-                    var description = "Im missing the following permissions:";
-                    if (!guildPermissions.Any(x => x.SendMessages)) description += " **SendMessages**";
-                    if (!guildPermissions.Any(x => x.EmbedLinks)) description += " **EmbedLinks**";
-                    if (!guildPermissions.Any(x => x.AddReactions)) description += " **AddReactions**";
-                    await commandContext.Channel.SendMessageAsync(description).ConfigureAwait(false);
-                    return null;
-                }
+                var guildPermissions = context.Guild.CurrentUser.Roles.Select(x => x.Permissions).ToList();
+                var description = "Im missing the following permissions:";
+                if (!guildPermissions.Any(x => x.SendMessages)) description += " **SendMessages**";
+                if (!guildPermissions.Any(x => x.EmbedLinks)) description += " **EmbedLinks**";
+                if (!guildPermissions.Any(x => x.AddReactions)) description += " **AddReactions**";
+                await context.Channel.SendMessageAsync(description).ConfigureAwait(false);
+                return null;
             }
 
 
