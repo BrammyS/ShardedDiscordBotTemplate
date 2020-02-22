@@ -22,7 +22,6 @@ using Discord.WebSocket;
 using Unity;
 using Unity.Injection;
 using Unity.Lifetime;
-using Unity.Resolution;
 
 namespace Bot
 {

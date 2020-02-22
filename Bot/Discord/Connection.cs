@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Bot.Configurations;
-using Bot.Discord.Timers;
 using Bot.Interfaces.Discord.Handlers;
 using Bot.Interfaces.Discord.Handlers.CommandHandlers;
 using Bot.Interfaces.Discord.Services;
@@ -17,7 +16,6 @@ namespace Bot.Discord
         private readonly IClientLogHandler _clientLogHandler;
         private readonly ICommandHandler _commandHandler;
         private readonly IPrefixService _prefixService;
-        private readonly DiscordBotListsUpdateTimer _botListsUpdateTimer;
 
 
         /// <summary>
@@ -27,14 +25,12 @@ namespace Bot.Discord
         /// <param name="clientLogHandler">The <see cref="IClientLogHandler"/> that will log all the log messages.</param>
         /// <param name="commandHandler">The <see cref="ICommandHandler"/> that will handle all the commands.</param>
         /// <param name="prefixService">The <see cref="IPrefixService"/> That will be used for the custom prefixes.</param>
-        /// <param name="botListsUpdateTimer">The timer that will be used to active UpdateBotListStatsAsync().</param>
-        public Connection(DiscordShardedClient client, IClientLogHandler clientLogHandler, ICommandHandler commandHandler, IPrefixService prefixService, DiscordBotListsUpdateTimer botListsUpdateTimer)
+        public Connection(DiscordShardedClient client, IClientLogHandler clientLogHandler, ICommandHandler commandHandler, IPrefixService prefixService)
         {
             _client = client;
             _clientLogHandler = clientLogHandler;
             _commandHandler = commandHandler;
             _prefixService = prefixService;
-            _botListsUpdateTimer = botListsUpdateTimer;
         }
 
 

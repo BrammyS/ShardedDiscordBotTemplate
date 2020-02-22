@@ -61,7 +61,7 @@ namespace Bot.BotLists.Services
                 request.AddOrUpdateParameter("shard_count", shardCount);
                 request.AddOrUpdateParameter("server_count", guildCounts[shardId]);
                 request.AddOrUpdateParameter("shard_id", shardId);
-                var result = await RestClients["DiscordBotsDotOrg"].ExecutePostTaskAsync(request).ConfigureAwait(false);
+                var result = await RestClients["DiscordBotsDotOrg"].ExecutePostAsync(request).ConfigureAwait(false);
                 if (result.IsSuccessful) return;
                 _logger.Log($"Failed to update dblOrg stats reason: {result.ErrorMessage}", ConsoleColor.Red);
             }
