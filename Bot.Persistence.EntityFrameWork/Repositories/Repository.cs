@@ -22,10 +22,11 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
 
 
         /// <inheritdoc/>
-        public Task AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
-            return Context.Set<T>().AddAsync(entity);
+            await Context.Set<T>().AddAsync(entity).ConfigureAwait(false);
         }
+
 
 
         /// <inheritdoc/>
