@@ -1,3 +1,4 @@
+![.NET Core Build](https://github.com/BramEsendam/DiscordBotTemplate/workflows/.NET%20Core%20Build/badge.svg)
 # Discord Bot Template
 
 This is an advanced c# discord bot template. With sharding and EF core and more!
