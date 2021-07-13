@@ -4,10 +4,9 @@ namespace Bot.Logger.Interfaces
 {
     public interface ILogger
     {
-
         /// <summary>
-        /// Logs a message to the console and logs the message to the Misc logs folder.
-        /// The <paramref name="color"/> is by default <see cref="ConsoleColor.Gray"/>
+        ///     Logs a message to the console and logs the message to the Misc logs folder.
+        ///     The <paramref name="color" /> is by default <see cref="ConsoleColor.Gray" />
         /// </summary>
         /// <param name="message">The message that the user typed.</param>
         /// <param name="color">The color that the message will have when printing something to the console.</param>
@@ -15,7 +14,7 @@ namespace Bot.Logger.Interfaces
 
 
         /// <summary>
-        /// Logs a command error to text file.
+        ///     Logs a command error to text file.
         /// </summary>
         /// <param name="folder">The folder where you want to store the message.</param>
         /// <param name="errorReason">The error reason.</param>
@@ -27,7 +26,7 @@ namespace Bot.Logger.Interfaces
 
 
         /// <summary>
-        /// Logs a message to text file.
+        ///     Logs a message to text file.
         /// </summary>
         /// <param name="folder">The folder where you want to store the message.</param>
         /// <param name="text">The text you want to save.</param>
@@ -35,7 +34,7 @@ namespace Bot.Logger.Interfaces
 
 
         /// <summary>
-        /// Logs a command error to text file.
+        ///     Logs a command error to text file.
         /// </summary>
         /// <param name="id">The id of the server.</param>
         /// <param name="shardId">The id of the shard.</param>

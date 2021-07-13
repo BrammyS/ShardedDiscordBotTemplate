@@ -2,9 +2,8 @@
 {
     public interface IMiscEventHandler
     {
-
         /// <summary>
-        /// Initializes all the miscellaneous events.
+        ///     Initializes all the miscellaneous events.
         /// </summary>
         void Initialize();
     }

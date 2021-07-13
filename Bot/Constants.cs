@@ -1,12 +1,10 @@
 ﻿namespace Bot
 {
-
     /// <summary>
-    /// This class contains all the constant variables for the bot.
+    ///     This class contains all the constant variables for the bot.
     /// </summary>
     public static class Constants
     {
-
         /// <summary>The prefix that the bot will use for the commands.</summary>
         public const string Prefix = "!";
 

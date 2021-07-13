@@ -13,20 +13,17 @@ namespace Bot.BotLists.Services
 {
     public class BotListUpdater : IBotListUpdater
     {
+        private static readonly ConcurrentDictionary<string, RestClient> RestClients = new();
 
         private readonly ILogger _logger;
 
 
-        private static readonly ConcurrentDictionary<string, RestClient> RestClients = new ConcurrentDictionary<string, RestClient>();
-
-
         /// <summary>
-        /// Creates a new <see cref="BotListUpdater"/>
+        ///     Creates a new <see cref="BotListUpdater" />
         /// </summary>
-        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
+        /// <param name="logger">The <see cref="ILogger" /> that will be used to log all the messages.</param>
         public BotListUpdater(ILogger logger)
         {
-
             _logger = logger;
             RestClients.TryAdd("DiscordBotsDotOrg", new RestClient
             {
@@ -45,11 +42,10 @@ namespace Bot.BotLists.Services
 
 
         /// <summary>
-        /// Updates the server count and shard count for https://discordbots.org.
+        ///     Updates the server count and shard count for https://discordbots.org.
         /// </summary>
         private async Task UpdateDiscordBotsDotOrg(ulong botId, int shardCount, IReadOnlyList<int> guildCounts, IEnumerable<int> shardIds)
         {
-
             foreach (var shardId in shardIds)
             {
                 var request = new RestRequest($"bots/{botId}/stats")

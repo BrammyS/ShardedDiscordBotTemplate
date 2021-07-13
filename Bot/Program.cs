@@ -8,7 +8,6 @@ namespace Bot
     {
         private static Task Main()
         {
-            Console.SetBufferSize(1000, short.MaxValue - 1);
             Unity.RegisterTypes();
             var bot = Unity.Resolve<IBot>();
             return bot.StartAsync();

@@ -13,9 +13,9 @@ namespace Bot.Discord.Handlers.CommandHandlers
         private readonly IPrefixService _prefixService;
 
         /// <summary>
-        /// Creates a new <see cref="CommandInputErrorHandler"/>.
+        ///     Creates a new <see cref="CommandInputErrorHandler" />.
         /// </summary>
-        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
+        /// <param name="logger">The <see cref="ILogger" /> that will be used to log all the messages.</param>
         /// <param name="prefixService"></param>
         public CommandInputErrorHandler(ILogger logger, IPrefixService prefixService) : base(logger)
         {
@@ -87,11 +87,11 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Checks what command was used.
+        ///     Checks what command was used.
         /// </summary>
-        /// <param name="message">The <see cref="string"/> that contains the message.</param>
-        /// <param name="result">The <see cref="string"/> that contains the error message.</param>
-        /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
+        /// <param name="message">The <see cref="string" /> that contains the message.</param>
+        /// <param name="result">The <see cref="string" /> that contains the error message.</param>
+        /// <param name="prefix">The <see cref="string" /> that contains the prefix.</param>
         /// <returns></returns>
         private EmbedBuilder CheckForCommand(string message, string result, string prefix)
         {
@@ -103,10 +103,10 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Embeds the error messages for the BotInfo command.
+        ///     Embeds the error messages for the BotInfo command.
         /// </summary>
-        /// <param name="result">The <see cref="string"/> that contains the error message.</param>
-        /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
+        /// <param name="result">The <see cref="string" /> that contains the error message.</param>
+        /// <param name="prefix">The <see cref="string" /> that contains the prefix.</param>
         /// <returns> A embedded error message.</returns>
         private EmbedBuilder HandleBotInfoErrors(string result, string prefix)
         {
@@ -118,10 +118,10 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Embeds the error messages for the Ping command.
+        ///     Embeds the error messages for the Ping command.
         /// </summary>
-        /// <param name="result">The <see cref="string"/> that contains the error message.</param>
-        /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
+        /// <param name="result">The <see cref="string" /> that contains the error message.</param>
+        /// <param name="prefix">The <see cref="string" /> that contains the prefix.</param>
         /// <returns> A embedded error message.</returns>
         private EmbedBuilder HandlePingErrors(string result, string prefix)
         {
@@ -133,10 +133,10 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Embeds the error messages for the Shards command.
+        ///     Embeds the error messages for the Shards command.
         /// </summary>
-        /// <param name="result">The <see cref="string"/> that contains the error message.</param>
-        /// <param name="prefix">The <see cref="string"/> that contains the prefix.</param>
+        /// <param name="result">The <see cref="string" /> that contains the error message.</param>
+        /// <param name="prefix">The <see cref="string" /> that contains the prefix.</param>
         /// <returns> A embedded error message.</returns>
         private EmbedBuilder HandleShardsErrors(string result, string prefix)
         {

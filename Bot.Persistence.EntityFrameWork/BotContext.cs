@@ -4,10 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bot.Persistence.EntityFrameWork
 {
-
     public class BotContext : DbContext
     {
-
         /// <summary>Table containing all the server.</summary>
         public DbSet<Server> Servers { get; set; }
 
@@ -18,14 +16,14 @@ namespace Bot.Persistence.EntityFrameWork
         public DbSet<Request> Requests { get; set; }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         /// <example>
-        /// Migrations:
-        /// Follow these steps in the Package manager console.
-        /// 1. Move with `cd path` to the correct folder.
-        /// 2. Use: `dotnet ef migrations add InitialCreate`.
-        /// 3. Use: `dotnet ef database update`.
-        /// Note: The connection string needs to be hardcoded to use a migration.
+        ///     Migrations:
+        ///     Follow these steps in the Package manager console.
+        ///     1. Move with `cd path` to the correct folder.
+        ///     2. Use: `dotnet ef migrations add InitialCreate`.
+        ///     3. Use: `dotnet ef database update`.
+        ///     Note: The connection string needs to be hardcoded to use a migration.
         /// </example>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,7 +31,7 @@ namespace Bot.Persistence.EntityFrameWork
         }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new RequestsConfiguration());

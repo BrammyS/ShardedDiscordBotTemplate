@@ -4,14 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Bot.Persistence.EntityFrameWork.Configurations
 {
-
     /// <summary>
-    /// This class contains the configurations for the <see cref="Server"/> table. 
+    ///     This class contains the configurations for the <see cref="Server" /> table.
     /// </summary>
     public class ServersConfiguration : IEntityTypeConfiguration<Server>
     {
-
-
         public void Configure(EntityTypeBuilder<Server> builder)
         {
             builder.ToTable("Servers");
@@ -26,4 +23,3 @@ namespace Bot.Persistence.EntityFrameWork.Configurations
         }
     }
 }
-

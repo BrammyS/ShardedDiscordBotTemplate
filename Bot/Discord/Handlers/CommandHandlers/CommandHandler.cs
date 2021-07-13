@@ -18,27 +18,33 @@ namespace Bot.Discord.Handlers.CommandHandlers
     public class CommandHandler : ICommandHandler
     {
         private readonly DiscordShardedClient _client;
+        private readonly ICommandErrorHandler _commandErrorHandler;
+        private readonly ICommandInputErrorHandler _commandInputErrorHandler;
         private readonly CommandService _commandService;
         private readonly ILogger _logger;
         private readonly IPrefixService _prefixService;
-        private readonly ICommandErrorHandler _commandErrorHandler;
-        private readonly ICommandInputErrorHandler _commandInputErrorHandler;
         private readonly ISpamFilter _spamFilter;
         private IServiceProvider _services;
 
 
         /// <summary>
-        /// Creates a new <see cref="CommandHandler"/>.
+        ///     Creates a new <see cref="CommandHandler" />.
         /// </summary>
-        /// <param name="client">The <see cref="DiscordShardedClient"/> that will be used to receive all the messages.</param>
-        /// <param name="commandService">The <see cref="CommandService"/> that will be used to execute the commands.</param>
-        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
-        /// <param name="prefixService">The <see cref="IPrefixService"/> that will be used.</param>
-        /// <param name="commandErrorHandler">The <see cref="ICommandErrorHandler"/> that will be used to handle command errors.</param>
-        /// <param name="commandInputErrorHandler">The <see cref="ICommandInputErrorHandler"/> that will be used when the input for a command is wrong.</param>
-        /// <param name="spamFilter">The <see cref="ISpamFilter"/> that will be used to filter out users that are spamming commands.</param>
+        /// <param name="client">The <see cref="DiscordShardedClient" /> that will be used to receive all the messages.</param>
+        /// <param name="commandService">The <see cref="CommandService" /> that will be used to execute the commands.</param>
+        /// <param name="logger">The <see cref="ILogger" /> that will be used to log all the messages.</param>
+        /// <param name="prefixService">The <see cref="IPrefixService" /> that will be used.</param>
+        /// <param name="commandErrorHandler">The <see cref="ICommandErrorHandler" /> that will be used to handle command errors.</param>
+        /// <param name="commandInputErrorHandler">
+        ///     The <see cref="ICommandInputErrorHandler" /> that will be used when the input
+        ///     for a command is wrong.
+        /// </param>
+        /// <param name="spamFilter">
+        ///     The <see cref="ISpamFilter" /> that will be used to filter out users that are spamming
+        ///     commands.
+        /// </param>
         public CommandHandler(DiscordShardedClient client, CommandService commandService, ILogger logger, IPrefixService prefixService,
-                              ICommandErrorHandler commandErrorHandler, ICommandInputErrorHandler commandInputErrorHandler, ISpamFilter spamFilter)
+            ICommandErrorHandler commandErrorHandler, ICommandInputErrorHandler commandInputErrorHandler, ISpamFilter spamFilter)
         {
             _client = client;
             _commandService = commandService;
@@ -68,7 +74,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Handles the given log message.
+        ///     Handles the given log message.
         /// </summary>
         /// <param name="logMessage">The log message that will be logged.</param>
         private Task LogCommandServiceEvent(LogMessage logMessage)
@@ -79,7 +85,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Handles the given message.
+        ///     Handles the given message.
         /// </summary>
         /// <param name="message">The socket message.</param>
         private Task HandleCommandEvent(SocketMessage message)
@@ -91,12 +97,11 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Checks if the message contains a prefix.
+        ///     Checks if the message contains a prefix.
         /// </summary>
         /// <param name="msg">The socket user message.</param>
         private async Task CheckForPrefixAsync(SocketUserMessage msg)
         {
-
             // If the user is a bot, return.
             if (msg.Author.IsBot) return;
 
@@ -107,9 +112,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
             // Check if the message has a valid default command prefix.
             if (context.Message.HasStringPrefix(Constants.Prefix, ref argPos, StringComparison.CurrentCultureIgnoreCase) ||
                 context.Message.HasMentionPrefix(_client.CurrentUser, ref argPos))
-            {
                 await HandleCommandAsync(context, argPos).ConfigureAwait(false);
-            }
 
             // Check if the message has a valid custom command prefix.
             var customPrefix = _prefixService.GetPrefix(context.Guild.Id);
@@ -119,15 +122,14 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Checks if the message contains a prefix.
+        ///     Checks if the message contains a prefix.
         /// </summary>
-        /// <param name="context">The sharded command context that was created in <see cref="CheckForPrefixAsync"/>.</param>
+        /// <param name="context">The sharded command context that was created in <see cref="CheckForPrefixAsync" />.</param>
         /// <param name="argPos">The argPos to be used.</param>
         private async Task HandleCommandAsync(ShardedCommandContext context, int argPos)
         {
             try
             {
-
                 // Start a stopwatch to log the runtime. 
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
@@ -174,12 +176,11 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Checks if the message contains a prefix.
+        ///     Checks if the message contains a prefix.
         /// </summary>
         /// <param name="logMessage">The log message that will be logged to CommandService/ErrorDetails</param>
         private async Task CommandServiceLogAsync(LogMessage logMessage)
         {
-
             // If log message is a CommandException, send a embedded error message.
             // Warning: This will only be activated if an error occured while running the command.
             if (logMessage.Exception is CommandException commandException)
@@ -192,9 +193,9 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Saves the request data to the database.
+        ///     Saves the request data to the database.
         /// </summary>
-        /// <returns>An awaitable <see cref="Task"/>.</returns>
+        /// <returns>An awaitable <see cref="Task" />.</returns>
         private async Task SaveRequestDataAsync(Stopwatch stopwatch, ShardedCommandContext context, SearchResult searchResult, bool isSuccessFul, string errorMessage = "")
         {
             using (var unitOfWork = Unity.Resolve<IRequestUnitOfWork>())

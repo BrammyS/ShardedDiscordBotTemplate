@@ -7,21 +7,20 @@ namespace Bot.Discord.Handlers.CommandHandlers
 {
     public class ErrorHandler : IErrorHandler
     {
-        private readonly ILogger _logger;
-
-
         /// <summary>
-        /// The default error message that will can be shown in the description of an embed.
+        ///     The default error message that will can be shown in the description of an embed.
         /// </summary>
         private const string DefaultErrorMessage =
             "an unexpected error occurred. Pls try again.\n" +
             "Join [UPDATE](https://discord.ggINVITE) discord if nothing changes!";
 
+        private readonly ILogger _logger;
+
 
         /// <summary>
-        /// Creates a new <see cref="ErrorHandler"/>.
+        ///     Creates a new <see cref="ErrorHandler" />.
         /// </summary>
-        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
+        /// <param name="logger">The <see cref="ILogger" /> that will be used to log all the messages.</param>
         public ErrorHandler(ILogger logger)
         {
             _logger = logger;
@@ -47,7 +46,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
         /// <inheritdoc />
         public EmbedBuilder EmbedError(string title, string description)
         {
-            return new EmbedBuilder
+            return new()
             {
                 Author = new EmbedAuthorBuilder
                 {

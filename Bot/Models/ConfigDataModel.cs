@@ -2,7 +2,6 @@
 {
     public struct ConfigDataModel
     {
-
         /// <summary>The token that the bot will use to connect.</summary>
         public string Token;
 

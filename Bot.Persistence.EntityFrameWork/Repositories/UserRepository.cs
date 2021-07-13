@@ -13,7 +13,7 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
         }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<User> GetOrAddUserAsync(ulong id, string userName)
         {
             try
@@ -22,7 +22,7 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
 
                 // Return the user if it exists in the database.
                 // Create a new one if it doesn't exist.
-                if (exists) return await Context.Set<User>().FirstOrDefaultAsync(x=>x.Id == id).ConfigureAwait(false);
+                if (exists) return await Context.Set<User>().FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
                 var user = await Context.Set<User>().AddAsync(new User
                 {
                     Id = id,
@@ -31,7 +31,6 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
                     CommandUsed = DateTime.Now.AddMinutes(-1),
                     SpamWarning = 0,
                     TotalTimesTimedOut = 0
-                    
                 }).ConfigureAwait(false);
                 await Context.SaveChangesAsync().ConfigureAwait(false);
                 return user.Entity;
@@ -44,4 +43,3 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
         }
     }
 }
-

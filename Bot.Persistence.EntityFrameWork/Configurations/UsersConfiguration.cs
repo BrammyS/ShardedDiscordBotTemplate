@@ -4,14 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Bot.Persistence.EntityFrameWork.Configurations
 {
-
     /// <summary>
-    /// This class contains the configurations for the <see cref="User"/> table. 
+    ///     This class contains the configurations for the <see cref="User" /> table.
     /// </summary>
     public class UsersConfiguration : IEntityTypeConfiguration<User>
     {
-
-
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("Users");

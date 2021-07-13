@@ -9,8 +9,10 @@ namespace Bot.Discord.Timers
 {
     public class DiscordBotListsUpdateTimer
     {
-        private readonly DiscordShardedClient _client;
         private readonly IBotListUpdater _botListUpdater;
+        private readonly DiscordShardedClient _client;
+
+        private Timer _timer;
 
         public DiscordBotListsUpdateTimer(DiscordShardedClient client, IBotListUpdater botListUpdater)
         {
@@ -18,7 +20,6 @@ namespace Bot.Discord.Timers
             _botListUpdater = botListUpdater;
         }
 
-        private Timer _timer;
         internal Task TimerAsync()
         {
             _timer = new Timer
@@ -33,7 +34,7 @@ namespace Bot.Discord.Timers
 
 
         /// <summary>
-        /// Activated when <see cref="_timer"/> is elapsed.
+        ///     Activated when <see cref="_timer" /> is elapsed.
         /// </summary>
         private async void TimerElapsed(object sender, ElapsedEventArgs e)
         {
@@ -42,7 +43,7 @@ namespace Bot.Discord.Timers
 
 
         /// <summary>
-        /// Updates all discords list stats.
+        ///     Updates all discords list stats.
         /// </summary>
         private Task UpdateStatsAsync()
         {

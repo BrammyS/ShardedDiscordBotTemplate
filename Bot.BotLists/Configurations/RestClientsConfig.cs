@@ -6,7 +6,7 @@ namespace Bot.BotLists.Configurations
 {
     public static class RestClientsConfig
     {
-        /// <summary>The folder name where the <see cref="ConfigFile"/> is located.</summary>
+        /// <summary>The folder name where the <see cref="ConfigFile" /> is located.</summary>
         private const string ConfigFolder = "Configs";
 
         /// <summary>The file name of the config file.</summary>
@@ -15,7 +15,7 @@ namespace Bot.BotLists.Configurations
         public static TokenConfig TokenConfig;
 
         /// <summary>
-        /// Load the token config file.
+        ///     Load the token config file.
         /// </summary>
         static RestClientsConfig()
         {

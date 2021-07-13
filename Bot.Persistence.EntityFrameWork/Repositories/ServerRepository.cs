@@ -16,14 +16,14 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
         }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<Server> GetServerAsync(ulong id)
         {
             try
             {
                 return await Context.Set<Server>()
-                                    //.Include(x => x.Requests)
-                                    .FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
+                    //.Include(x => x.Requests)
+                    .FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -33,19 +33,19 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
         }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<List<ServerPrefix>> GetAllPrefixesAsync()
         {
             try
             {
                 return
                     await (from server in Context.Set<Server>()
-                           where server.Prefix != null
-                           select new ServerPrefix
-                           {
-                               ServerId = server.Id,
-                               Prefix = server.Prefix
-                           }).ToListAsync().ConfigureAwait(false);
+                        where server.Prefix != null
+                        select new ServerPrefix
+                        {
+                            ServerId = server.Id,
+                            Prefix = server.Prefix
+                        }).ToListAsync().ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -55,7 +55,7 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
         }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<Server> GetOrAddServerAsync(ulong id, string serverName, int memberCount)
         {
             try
