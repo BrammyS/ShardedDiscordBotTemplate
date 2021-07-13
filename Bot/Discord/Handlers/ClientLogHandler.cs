@@ -14,10 +14,10 @@ namespace Bot.Discord.Handlers
 
 
         /// <summary>
-        /// Creates a new <see cref="ClientLogHandler"/>.
+        ///     Creates a new <see cref="ClientLogHandler" />.
         /// </summary>
-        /// <param name="client">The <see cref="DiscordShardedClient"/> that will be used.</param>
-        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
+        /// <param name="client">The <see cref="DiscordShardedClient" /> that will be used.</param>
+        /// <param name="logger">The <see cref="ILogger" /> that will be used to log all the messages.</param>
         public ClientLogHandler(DiscordShardedClient client, ILogger logger)
         {
             _client = client;
@@ -36,7 +36,7 @@ namespace Bot.Discord.Handlers
 
 
         /// <summary>
-        /// Handles the <see cref="DiscordShardedClient.Log"/> event.
+        ///     Handles the <see cref="DiscordShardedClient.Log" /> event.
         /// </summary>
         /// <param name="logMessage">The log message.</param>
         private Task LogEvent(LogMessage logMessage)
@@ -52,7 +52,7 @@ namespace Bot.Discord.Handlers
 
 
         /// <summary>
-        /// Logs a string to the console.
+        ///     Logs a string to the console.
         /// </summary>
         /// <param name="message">The message that will be logged.</param>
         private void Log(string message)
@@ -62,12 +62,13 @@ namespace Bot.Discord.Handlers
                 _logger.Log("Unknown", message);
                 return;
             }
+
             _logger.Log(message);
         }
 
 
         /// <summary>
-        /// Handles the <see cref="DiscordShardedClient.ShardDisconnected"/> event.
+        ///     Handles the <see cref="DiscordShardedClient.ShardDisconnected" /> event.
         /// </summary>
         /// <param name="exception">The exception of the disconnected shard.</param>
         /// <param name="shard">The shard that got disconnected.</param>
@@ -79,7 +80,7 @@ namespace Bot.Discord.Handlers
 
 
         /// <summary>
-        /// Handles the <see cref="DiscordShardedClient.ShardLatencyUpdated"/> event.
+        ///     Handles the <see cref="DiscordShardedClient.ShardLatencyUpdated" /> event.
         /// </summary>
         /// <param name="oldPing">The latency value before it was updated.</param>
         /// <param name="updatePing">The new latency value</param>
@@ -92,7 +93,7 @@ namespace Bot.Discord.Handlers
 
 
         /// <summary>
-        /// Handles the <see cref="DiscordShardedClient.ShardConnected"/> event.
+        ///     Handles the <see cref="DiscordShardedClient.ShardConnected" /> event.
         /// </summary>
         /// <param name="shard">The shard that got connected.</param>
         private Task ShardConnectedEvent(DiscordSocketClient shard)
@@ -103,7 +104,7 @@ namespace Bot.Discord.Handlers
 
 
         /// <summary>
-        /// Sends a message that a shard disconnected
+        ///     Sends a message that a shard disconnected
         /// </summary>
         /// <param name="exception">The exception of the disconnected shard.</param>
         /// <param name="shard">The shard that got disconnected.</param>
@@ -123,12 +124,11 @@ namespace Bot.Discord.Handlers
 
 
         /// <summary>
-        /// Sends a message that a shard connected.
+        ///     Sends a message that a shard connected.
         /// </summary>
         /// <param name="shard">The shard that got connected.</param>
         private async Task ShardConnectedAsync(DiscordSocketClient shard)
         {
-
             try
             {
                 await Task.Delay(30 * 1000).ConfigureAwait(false);
@@ -144,14 +144,13 @@ namespace Bot.Discord.Handlers
 
 
         /// <summary>
-        /// Sends a message that a shard latency was updated.
+        ///     Sends a message that a shard latency was updated.
         /// </summary>
         /// <param name="oldPing">The latency value before it was updated.</param>
         /// <param name="updatePing">The new latency value.</param>
         /// <param name="shard">The shard that got disconnected.</param>
         private async Task ShardLatencyUpdatedAsync(int oldPing, int updatePing, DiscordSocketClient shard)
         {
-
             // If new or old latency if lager then 500ms.
             if (updatePing < 500 && oldPing < 500) return;
             try

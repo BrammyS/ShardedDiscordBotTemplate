@@ -17,11 +17,11 @@ namespace Bot.Discord
 
 
         /// <summary>
-        /// Creates a new <see cref="Connection"/>.
+        ///     Creates a new <see cref="Connection" />.
         /// </summary>
-        /// <param name="client">The <see cref="DiscordShardedClient"/> that will be used.</param>
-        /// <param name="clientLogHandler">The <see cref="IClientLogHandler"/> that will log all the log messages.</param>
-        /// <param name="commandHandler">The <see cref="ICommandHandler"/> that will handle all the commands.</param>
+        /// <param name="client">The <see cref="DiscordShardedClient" /> that will be used.</param>
+        /// <param name="clientLogHandler">The <see cref="IClientLogHandler" /> that will log all the log messages.</param>
+        /// <param name="commandHandler">The <see cref="ICommandHandler" /> that will handle all the commands.</param>
         public Connection(DiscordShardedClient client, IClientLogHandler clientLogHandler, ICommandHandler commandHandler)
         {
             _client = client;

@@ -8,7 +8,6 @@ namespace Bot
     {
         private static async Task Main()
         {
-            Console.SetBufferSize(1000, short.MaxValue - 1);
             Unity.RegisterTypes();
             var bot = Unity.Resolve<IBot>();
             await bot.StartAsync().ConfigureAwait(false);

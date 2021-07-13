@@ -13,23 +13,26 @@ namespace Bot.Discord.Handlers.CommandHandlers
     public class CommandHandler : ICommandHandler
     {
         private readonly DiscordShardedClient _client;
-        private readonly CommandService _commandService;
-        private readonly ILogger _logger;
         private readonly ICommandErrorHandler _commandErrorHandler;
         private readonly ICommandInputErrorHandler _commandInputErrorHandler;
+        private readonly CommandService _commandService;
+        private readonly ILogger _logger;
         private IServiceProvider _services;
 
 
         /// <summary>
-        /// Creates a new <see cref="CommandHandler"/>.
+        ///     Creates a new <see cref="CommandHandler" />.
         /// </summary>
-        /// <param name="client">The <see cref="DiscordShardedClient"/> that will be used to receive all the messages.</param>
-        /// <param name="commandService">The <see cref="CommandService"/> that will be used to execute the commands.</param>
-        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
-        /// <param name="commandErrorHandler">The <see cref="ICommandErrorHandler"/> that will be used to handle command errors.</param>
-        /// <param name="commandInputErrorHandler">The <see cref="ICommandInputErrorHandler"/> that will be used when the input for a command is wrong.</param>
-        public CommandHandler(DiscordShardedClient client, CommandService commandService, ILogger logger, 
-                              ICommandErrorHandler commandErrorHandler, ICommandInputErrorHandler commandInputErrorHandler)
+        /// <param name="client">The <see cref="DiscordShardedClient" /> that will be used to receive all the messages.</param>
+        /// <param name="commandService">The <see cref="CommandService" /> that will be used to execute the commands.</param>
+        /// <param name="logger">The <see cref="ILogger" /> that will be used to log all the messages.</param>
+        /// <param name="commandErrorHandler">The <see cref="ICommandErrorHandler" /> that will be used to handle command errors.</param>
+        /// <param name="commandInputErrorHandler">
+        ///     The <see cref="ICommandInputErrorHandler" /> that will be used when the input
+        ///     for a command is wrong.
+        /// </param>
+        public CommandHandler(DiscordShardedClient client, CommandService commandService, ILogger logger,
+            ICommandErrorHandler commandErrorHandler, ICommandInputErrorHandler commandInputErrorHandler)
         {
             _client = client;
             _commandService = commandService;
@@ -57,7 +60,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Handles the given log message.
+        ///     Handles the given log message.
         /// </summary>
         /// <param name="logMessage">The log message that will be logged.</param>
         private Task LogCommandServiceEvent(LogMessage logMessage)
@@ -68,7 +71,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Handles the given message.
+        ///     Handles the given message.
         /// </summary>
         /// <param name="message">The socket message.</param>
         private Task HandleCommandEvent(SocketMessage message)
@@ -80,12 +83,11 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Checks if the message contains a prefix.
+        ///     Checks if the message contains a prefix.
         /// </summary>
         /// <param name="msg">The socket user message.</param>
         private async Task CheckForPrefixAsync(SocketUserMessage msg)
         {
-
             // If the user is a bot, return.
             if (msg.Author.IsBot) return;
 
@@ -96,16 +98,14 @@ namespace Bot.Discord.Handlers.CommandHandlers
             // Check if the message has a valid command prefix.
             if (context.Message.HasStringPrefix(Constants.Prefix, ref argPos, StringComparison.CurrentCultureIgnoreCase) ||
                 context.Message.HasMentionPrefix(_client.CurrentUser, ref argPos))
-            {
                 await HandleCommandAsync(context, argPos).ConfigureAwait(false);
-            }
         }
 
 
         /// <summary>
-        /// Checks if the message contains a prefix.
+        ///     Checks if the message contains a prefix.
         /// </summary>
-        /// <param name="context">The sharded command context that was created in <see cref="CheckForPrefixAsync"/>.</param>
+        /// <param name="context">The sharded command context that was created in <see cref="CheckForPrefixAsync" />.</param>
         /// <param name="argPos">The argPos to be used.</param>
         private async Task HandleCommandAsync(ShardedCommandContext context, int argPos)
         {
@@ -115,10 +115,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
                 var searchResult = _commandService.Search(context, argPos);
 
                 // If no command were found, return
-                if (searchResult.Commands == null || searchResult.Commands.Count == 0)
-                {
-                    return;
-                }
+                if (searchResult.Commands == null || searchResult.Commands.Count == 0) return;
 
                 // Execute the command.
                 var result = await _commandService.ExecuteAsync(context, argPos, _services).ConfigureAwait(false);
@@ -141,12 +138,11 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
 
         /// <summary>
-        /// Checks if the message contains a prefix.
+        ///     Checks if the message contains a prefix.
         /// </summary>
         /// <param name="logMessage">The log message that will be logged to CommandService/ErrorDetails</param>
         private async Task CommandServiceLogAsync(LogMessage logMessage)
         {
-
             // If log message is a CommandException, send a embedded error message.
             // Warning: This will only be activated if an error occured while running the command.
             if (logMessage.Exception is CommandException commandException)

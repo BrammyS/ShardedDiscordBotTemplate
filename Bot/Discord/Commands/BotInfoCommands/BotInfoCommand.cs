@@ -12,9 +12,10 @@ namespace Bot.Discord.Commands.BotInfoCommands
     [Name("BotInfo")]
     public class BotInfoCommand : ModuleBase<SocketCommandContext>
     {
+        private readonly EmbedBuilder _embed;
         private readonly ILogger _logger;
         private readonly DiscordShardedClient _shardedClient;
-        private readonly EmbedBuilder _embed;
+
         public BotInfoCommand(ILogger logger, DiscordShardedClient shardedClient)
         {
             _logger = logger;
@@ -24,12 +25,12 @@ namespace Bot.Discord.Commands.BotInfoCommands
 
 
         /// <summary>
-        /// Sends bot info about the current client.
+        ///     Sends bot info about the current client.
         /// </summary>
         [Command("BotInfo", RunMode = RunMode.Async)]
         public async Task StatsAsync()
         {
-            var ramUsages = Math.Round((decimal)Process.GetCurrentProcess().PrivateMemorySize64 / 1000000000, 2);
+            var ramUsages = Math.Round((decimal) Process.GetCurrentProcess().PrivateMemorySize64 / 1000000000, 2);
             var upTime = DateTime.Now.Subtract(Process.GetCurrentProcess().StartTime);
             var upTimeString = $"{upTime.Days}D:{upTime.Hours}H:{upTime.Minutes}M:{upTime.Seconds}S";
             _embed.WithThumbnailUrl(_shardedClient.CurrentUser.GetAvatarUrl());

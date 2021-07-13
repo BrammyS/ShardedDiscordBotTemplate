@@ -12,7 +12,6 @@ using Discord.WebSocket;
 using Unity;
 using Unity.Injection;
 using Unity.Lifetime;
-using Unity.Resolution;
 
 namespace Bot
 {
@@ -31,7 +30,7 @@ namespace Bot
         }
 
         /// <summary>
-        /// Registers objects to the <see cref="container"/>
+        ///     Registers objects to the <see cref="container" />
         /// </summary>
         public static void RegisterTypes()
         {
@@ -43,9 +42,9 @@ namespace Bot
 
 
             //DI for discord
-            container.RegisterSingleton<DiscordSocketConfig>(new InjectionFactory(i => SocketConfig.GetDefault()));
+            container.RegisterFactory<DiscordSocketConfig>(i => SocketConfig.GetDefault());
             container.RegisterSingleton<DiscordShardedClient>(new InjectionConstructor(typeof(DiscordSocketConfig)));
-            container.RegisterSingleton<CommandService>(new InjectionFactory(i => CommandConfig.GetDefault()));
+            container.RegisterFactory<CommandService>(i => CommandConfig.GetDefault());
             container.RegisterSingleton<IClientLogHandler, ClientLogHandler>();
 
             container.RegisterType<ICommandErrorHandler, CommandErrorHandler>(new PerThreadLifetimeManager());
@@ -55,13 +54,13 @@ namespace Bot
 
 
         /// <summary>
-        /// Resolve a objects that is registered in the <see cref="container"/>.
+        ///     Resolve a objects that is registered in the <see cref="container" />.
         /// </summary>
         /// <typeparam name="T">The object you want to resolve</typeparam>
         /// <returns>The resolved object.</returns>
         public static T Resolve<T>()
         {
-            return (T)Container.Resolve(typeof(T));
+            return (T) Container.Resolve(typeof(T));
         }
     }
 }

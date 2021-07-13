@@ -5,15 +5,13 @@ namespace Bot.Discord.Configurations
 {
     public static class CommandConfig
     {
-
-
         /// <summary>
-        /// Sets the default command service configuration.
+        ///     Sets the default command service configuration.
         /// </summary>
         /// <returns>The default command service configuration.</returns>
         public static CommandService GetDefault()
         {
-            return new CommandService(new CommandServiceConfig
+            return new(new CommandServiceConfig
             {
                 CaseSensitiveCommands = false,
                 LogLevel = LogSeverity.Info,

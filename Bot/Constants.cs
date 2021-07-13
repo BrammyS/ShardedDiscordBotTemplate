@@ -2,7 +2,6 @@
 {
     public static class Constants
     {
-
         /// <summary>The prefix that the bot will use for the commands.</summary>
         public const string Prefix = "!";
 
@@ -33,6 +32,5 @@
 
         /// <summary>The string for a red status emoji</summary>
         public const string RedStatusEmoji = "<:RedStatus:533010751074467851>";
-
     }
 }

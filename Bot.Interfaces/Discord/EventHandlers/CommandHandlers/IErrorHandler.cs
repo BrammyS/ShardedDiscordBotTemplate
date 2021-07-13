@@ -4,10 +4,8 @@ namespace Bot.Interfaces.Discord.EventHandlers.CommandHandlers
 {
     public interface IErrorHandler
     {
-
-
         /// <summary>
-        /// Embeds the default embedded error message.
+        ///     Embeds the default embedded error message.
         /// </summary>
         /// <param name="commandName">The command the user used.</param>
         /// <param name="message">The error message you want to show.</param>
@@ -17,7 +15,7 @@ namespace Bot.Interfaces.Discord.EventHandlers.CommandHandlers
 
 
         /// <summary>
-        /// Embeds a embedded error message.
+        ///     Embeds a embedded error message.
         /// </summary>
         /// <param name="title">The title the message should have.</param>
         /// <param name="description">The description the message will have.</param>
@@ -26,7 +24,7 @@ namespace Bot.Interfaces.Discord.EventHandlers.CommandHandlers
 
 
         /// <summary>
-        /// Embeds the default embedded error message.
+        ///     Embeds the default embedded error message.
         /// </summary>
         /// <param name="exception">The exception that will be logged .</param>
         /// <returns>The embedded error message.</returns>

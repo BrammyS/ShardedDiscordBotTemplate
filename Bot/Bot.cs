@@ -10,9 +10,9 @@ namespace Bot
 
 
         /// <summary>
-        /// Creates a new <see cref="Bot"/>.
+        ///     Creates a new <see cref="Bot" />.
         /// </summary>
-        /// <param name="connection">The <see cref="IConnection"/> that will be used.</param>
+        /// <param name="connection">The <see cref="IConnection" /> that will be used.</param>
         public Bot(IConnection connection)
         {
             _connection = connection;
