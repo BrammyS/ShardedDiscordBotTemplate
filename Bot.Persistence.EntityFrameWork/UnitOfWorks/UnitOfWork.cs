@@ -10,7 +10,7 @@ namespace Bot.Persistence.EntityFrameWork.UnitOfWorks
 
 
         /// <summary>
-        /// Creates a new <see cref="UnitOfWork"/>
+        ///     Creates a new <see cref="UnitOfWork" />
         /// </summary>
         /// <param name="context">The DbContext that will be used.</param>
         /// <param name="serverRepository">The ServerRepository that will be used.</param>
@@ -24,35 +24,34 @@ namespace Bot.Persistence.EntityFrameWork.UnitOfWorks
             Requests = requestRepository;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IServerRepository Servers { get; }
 
-        /// <inheritdoc/>
-        public IRequestRepository Requests{ get; }
+        /// <inheritdoc />
+        public IRequestRepository Requests { get; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IUserRepository Users { get; }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public int Save()
         {
             return _context.SaveChanges();
         }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync().ConfigureAwait(false);
         }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Dispose()
         {
             _context.Dispose();
         }
     }
 }
-

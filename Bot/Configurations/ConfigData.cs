@@ -9,11 +9,9 @@ namespace Bot.Configurations
         private const string ConfigFolder = "Configs";
         private const string ConfigFile = "ConfigData.json";
 
-        public static ConfigDataModel Data { get; }
-
 
         /// <summary>
-        /// Loads all the <see cref="ConfigData"/> needed to start the bot.
+        ///     Loads all the <see cref="ConfigData" /> needed to start the bot.
         /// </summary>
         static ConfigData()
         {
@@ -31,5 +29,7 @@ namespace Bot.Configurations
                 Data = JsonConvert.DeserializeObject<ConfigDataModel>(json);
             }
         }
+
+        public static ConfigDataModel Data { get; }
     }
 }

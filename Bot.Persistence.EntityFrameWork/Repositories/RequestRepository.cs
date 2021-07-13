@@ -10,5 +10,3 @@ namespace Bot.Persistence.EntityFrameWork.Repositories
         }
     }
 }
-
-

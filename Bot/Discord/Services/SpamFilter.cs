@@ -11,11 +11,10 @@ namespace Bot.Discord.Services
 {
     public class SpamFilter : ISpamFilter
     {
-
         /// <summary>
-        /// A <see cref="List{T}"/> containing all the channel ids that are whitelisted from the spam filter.
+        ///     A <see cref="List{T}" /> containing all the channel ids that are whitelisted from the spam filter.
         /// </summary>
-        private readonly List<ulong> _whiteListedChannels = new List<ulong>
+        private readonly List<ulong> _whiteListedChannels = new()
         {
             491904518263537667,
             436515735091806212
@@ -38,11 +37,14 @@ namespace Bot.Discord.Services
                         user.SpamWarning = 0;
                         try
                         {
-                            await context.Channel.SendMessageAsync($"{context.User.Mention} you got timed out for {Constants.SpamFilterTimeoutMinutes} min\nBecause you were trying to use my commands to often.").ConfigureAwait(false);
+                            await context.Channel
+                                .SendMessageAsync($"{context.User.Mention} you got timed out for {Constants.SpamFilterTimeoutMinutes} min\nBecause you were trying to use my commands to often.")
+                                .ConfigureAwait(false);
                         }
                         catch (HttpException)
                         {
-                            await context.User.SendMessageAsync($"{context.User.Mention} you got timed out for {Constants.SpamFilterTimeoutMinutes} min\nBecause you were trying to use my commands to often.").ConfigureAwait(false);
+                            await context.User.SendMessageAsync(
+                                $"{context.User.Mention} you got timed out for {Constants.SpamFilterTimeoutMinutes} min\nBecause you were trying to use my commands to often.").ConfigureAwait(false);
                         }
                     }
                     else if (DateTime.Now.Subtract(user.CommandUsed).TotalSeconds > 0)
@@ -50,7 +52,9 @@ namespace Bot.Discord.Services
                         user.SpamWarning++;
                         try
                         {
-                            await context.Channel.SendMessageAsync($"pls wait {Constants.SpamFilterSeconds - Math.Round(DateTime.Now.Subtract(user.CommandUsed).TotalSeconds, 1)}s before using another command.").ConfigureAwait(false);
+                            await context.Channel
+                                .SendMessageAsync($"pls wait {Constants.SpamFilterSeconds - Math.Round(DateTime.Now.Subtract(user.CommandUsed).TotalSeconds, 1)}s before using another command.")
+                                .ConfigureAwait(false);
                         }
                         catch (HttpException)
                         {
@@ -58,9 +62,11 @@ namespace Bot.Discord.Services
                                                                 "Please change my permission so i can send messages in that channel!").ConfigureAwait(false);
                         }
                     }
+
                     await unitOfWork.SaveAsync().ConfigureAwait(false);
                     return false;
                 }
+
                 if (DateTime.Now.Subtract(user.CommandUsed).TotalSeconds > 60) user.SpamWarning = 0;
                 user.CommandUsed = DateTime.Now;
                 await unitOfWork.SaveAsync().ConfigureAwait(false);

@@ -9,12 +9,12 @@ namespace Bot.Discord.Commands
 {
     public class ServerCommands : ModuleBase<SocketCommandContext>
     {
-        private readonly ILogger _logger;
         private readonly EmbedBuilder _embed;
+        private readonly ILogger _logger;
 
 
         /// <summary>
-        /// Creates a new <see cref="ServerCommands"/>
+        ///     Creates a new <see cref="ServerCommands" />
         /// </summary>
         /// <param name="logger">The logger that will log messages to the console.</param>
         public ServerCommands(ILogger logger)
@@ -25,7 +25,7 @@ namespace Bot.Discord.Commands
 
 
         /// <summary>
-        /// Changes the prefix for the server.
+        ///     Changes the prefix for the server.
         /// </summary>
         /// <param name="prefix">The desired prefix.</param>
         [Command("prefix", RunMode = RunMode.Async)]
@@ -65,7 +65,7 @@ namespace Bot.Discord.Commands
 
 
         /// <summary>
-        /// Removes the current custom prefix.
+        ///     Removes the current custom prefix.
         /// </summary>
         [Command("remove prefix", RunMode = RunMode.Async)]
         [RequireBotPermission(GuildPermission.EmbedLinks)]
@@ -94,4 +94,3 @@ namespace Bot.Discord.Commands
         }
     }
 }
-

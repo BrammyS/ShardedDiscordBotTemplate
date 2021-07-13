@@ -6,12 +6,12 @@ namespace Bot.Discord.Configurations
     public static class SocketConfig
     {
         /// <summary>
-        /// Sets the default discord socket configuration.
+        ///     Sets the default discord socket configuration.
         /// </summary>
         /// <returns>The default discord socket configuration.</returns>
         public static DiscordSocketConfig GetDefault()
         {
-            return new DiscordSocketConfig
+            return new()
             {
                 LogLevel = LogSeverity.Info,
                 AlwaysDownloadUsers = false,

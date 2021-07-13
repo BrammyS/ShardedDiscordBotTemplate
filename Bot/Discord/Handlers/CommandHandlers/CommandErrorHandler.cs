@@ -9,11 +9,10 @@ namespace Bot.Discord.Handlers.CommandHandlers
 {
     public class CommandErrorHandler : ErrorHandler, ICommandErrorHandler
     {
-
         /// <summary>
-        /// Creates a new <see cref="CommandErrorHandler"/>.
+        ///     Creates a new <see cref="CommandErrorHandler" />.
         /// </summary>
-        /// <param name="logger">The <see cref="ILogger"/> that will be used to log all the messages.</param>
+        /// <param name="logger">The <see cref="ILogger" /> that will be used to log all the messages.</param>
         public CommandErrorHandler(ILogger logger) : base(logger)
         {
         }
@@ -29,7 +28,6 @@ namespace Bot.Discord.Handlers.CommandHandlers
 
             // If error is a Missing permissions error, send embedded error message.
             if (exception.Contains("The server responded with error 50013: Missing Permissions"))
-            {
                 if (context is SocketCommandContext commandContext)
                 {
                     var rolePermission = commandContext.Guild.CurrentUser.Roles.Select(x => x.Permissions).ToList();
@@ -47,7 +45,7 @@ namespace Bot.Discord.Handlers.CommandHandlers
                     await commandContext.Channel.SendMessageAsync(description).ConfigureAwait(false);
                     return null;
                 }
-            }
+
             return GetDefaultError(commandName, message, exception);
         }
     }

@@ -8,22 +8,22 @@ namespace Bot.Discord.Services
 {
     public class PrefixService : IPrefixService
     {
-        private ILogger Logger { get; }
-
         /// <summary>
-        /// The <see cref="ConcurrentDictionary{TKey,TValue}"/> that contains all the custom prefixes.
+        ///     The <see cref="ConcurrentDictionary{TKey,TValue}" /> that contains all the custom prefixes.
         /// </summary>
-        private static readonly ConcurrentDictionary<ulong, string> ServerPrefixes = new ConcurrentDictionary<ulong, string>();
+        private static readonly ConcurrentDictionary<ulong, string> ServerPrefixes = new();
 
 
         /// <summary>
-        /// Creates a new <see cref="PrefixService"/>.
+        ///     Creates a new <see cref="PrefixService" />.
         /// </summary>
-        /// <param name="logger">The <see cref="ILogger"/> that will be used to log messages to the console.</param>
+        /// <param name="logger">The <see cref="ILogger" /> that will be used to log messages to the console.</param>
         public PrefixService(ILogger logger)
         {
             Logger = logger;
         }
+
+        private ILogger Logger { get; }
 
 
         /// <inheritdoc />
@@ -64,6 +64,5 @@ namespace Bot.Discord.Services
                 foreach (var serverPrefix in serverPrefixes) StorePrefix(serverPrefix.Prefix, serverPrefix.ServerId);
             }
         }
-
     }
 }

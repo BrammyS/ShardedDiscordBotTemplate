@@ -6,7 +6,7 @@ namespace Bot.Persistence.EntityFrameWork.Configurations
 {
     public class DatabaseConfig
     {
-        /// <summary>The folder name where the <see cref="ConfigFile"/> is located.</summary>
+        /// <summary>The folder name where the <see cref="ConfigFile" /> is located.</summary>
         private const string ConfigFolder = "Configs";
 
         /// <summary>The file name of the config file.</summary>
@@ -15,7 +15,7 @@ namespace Bot.Persistence.EntityFrameWork.Configurations
         public static DbConfig DbConfig;
 
         /// <summary>
-        /// Load the Database config file.
+        ///     Load the Database config file.
         /// </summary>
         static DatabaseConfig()
         {
