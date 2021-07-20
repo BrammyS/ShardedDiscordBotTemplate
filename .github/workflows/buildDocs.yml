@@ -1,4 +1,4 @@
-name: .NET
+name: Build github pages documentation
 
 on:
   push:
@@ -11,12 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - uses: nikeee/docfx-action@v1.0.0
-      name: init docs
-      with:
-        args: init
-        
+
     - uses: nikeee/docfx-action@v1.0.0
       name: build docs
       with:
