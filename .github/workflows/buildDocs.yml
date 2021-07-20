@@ -22,7 +22,7 @@ jobs:
     - uses: nikeee/docfx-action@v1.0.0
       name: build docs
       with:
-        args: build
+        args: /github/workspace/docfx_project/docfx.json --serve
 
     - uses: maxheld83/ghpages@master
       name: Publish Documentation on GitHub Pages
