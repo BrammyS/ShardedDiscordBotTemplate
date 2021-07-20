@@ -8,7 +8,6 @@
             "src": "./"
           }
         ],
-        "dest": "./github/workspace/_site",
         "properties": {
             "TargetFramework": "net5.0"
         }
