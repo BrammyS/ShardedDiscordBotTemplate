@@ -1,0 +1,17 @@
+{
+    "metadata": [
+      {
+        "src": [
+          {
+            "files": ["**/*.csproj"],
+            "exclude": [ "**/bin/**", "**/obj/**" ],
+            "src": "./src"
+          }
+        ],
+        "dest": "./github/workspace",
+        "properties": {
+            "TargetFramework": "net5.0"
+        }
+      }
+    ]
+  }
