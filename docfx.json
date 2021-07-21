@@ -4,8 +4,7 @@
       "src": [
         {
           "files": [ "**/*.sln", "src/DotnetNew/*.csproj" ],
-          "exclude": [ "**/bin/**", "**/obj/**" ],
-          "src": "src"
+          "exclude": [ "**/bin/**", "**/obj/**" ]
         }
       ]
     }
