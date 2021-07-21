@@ -1,16 +1,13 @@
 {
-    "metadata": [
-      {
-        "src": [
-          {
-            "files": ["**/*.csproj"],
-            "exclude": [ "**/bin/**", "**/obj/**" ],
-            "src": "src/"
-          }
-        ],
-        "properties": {
-            "TargetFramework": "net5.0"
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "**/*.sln", "src/DotnetNew/*.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "src"
         }
-      }
-    ]
-  }
+      ]
+    }
+  ]
+}
